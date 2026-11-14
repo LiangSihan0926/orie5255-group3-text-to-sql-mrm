@@ -1,0 +1,184 @@
+"""Rederive the reference outcomes from base tables, without running the reference SQL."""
+from collections import Counter, defaultdict
+from contextlib import contextmanager
+from datetime import date, timedelta
+from hashlib import sha256
+from pathlib import Path
+from tempfile import TemporaryDirectory
+import gzip
+import shutil
+import sqlite3
+
+SNAPSHOT_SHA = 'd15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e'
+AS_OF = '1998-12-31'
+BAD = {'B', 'D'}
+FINISHED = {'A', 'B'}
+
+@contextmanager
+def snapshot(compressed, db=None):
+    """Check the raw bytes before opening an immutable read-only connection."""
+    with TemporaryDirectory(prefix='bird-reference-') as tmp:
+        if db is None:
+            db = Path(tmp) / 'financial.sqlite'
+            with gzip.open(compressed, 'rb') as src, db.open('wb') as dest:
+                shutil.copyfileobj(src, dest)
+        db = Path(db).resolve()
+        with db.open('rb') as f:
+            observed = sha256()
+            for block in iter(lambda: f.read(1 << 20), b''):
+                observed.update(block)
+        if observed.hexdigest() != SNAPSHOT_SHA:
+            raise ValueError('The supplied database does not match the pilot snapshot')
+        con = sqlite3.connect(db.as_uri()+'?mode=ro&immutable=1', uri=True)
+        try:
+            con.execute('PRAGMA query_only=ON')
+            con.execute('PRAGMA trusted_schema=OFF')
+            yield con
+        finally:
+            con.close()
+
+def month_end(start, duration):
+    # Match the recorded SQLite month-overflow convention. Do not infer actual repayment.
+    d = date.fromisoformat(start)
+    y, m = divmod(d.year*12+d.month-1+duration, 12)
+    return date(y, m+1, 1) + timedelta(days=d.day-1)
+
+def grouped(loans, key):
+    out = defaultdict(list)
+    for row in loans:
+        out[key(row)].append(row)
+    return out
+
+def ratio(loans, statuses=BAD, weight=False):
+    w = (lambda row: row[2]) if weight else (lambda row: 1)
+    denom = sum(map(w,loans))
+    return sum(w(row) for row in loans if row[4] in statuses)/denom if denom else None
+
+def mean(items):
+    seq = list(items)
+    return sum(seq)/len(seq) if seq else None
+
+def top(loans, grouping, statuses=BAD, weight=False):
+    ranked = sorted(((-ratio(rows,statuses,weight),region)
+                     for region,rows in grouped(loans,grouping).items()))
+    score, region = ranked[0]
+    return [(region, -score)]
+
+def recompute(con):
+    loans = list(con.execute('SELECT loan_id, account_id, amount, date, status, duration FROM loan'))
+    account_district = dict(con.execute('SELECT account_id,district_id FROM account'))
+    district = {key:(region,unemp) for key,region,unemp in
+                con.execute('SELECT district_id,A3,A12 FROM district')}
+    # Read only the year required for the approved age-band reference; emit no row-level data.
+    client = {key:(gender,did,birthyear) for key,gender,did,birthyear in
+              con.execute('SELECT client_id,gender,district_id,substr(birth_date,1,4) FROM client')}
+    roles = list(con.execute('SELECT account_id,client_id,type FROM disp'))
+    owner = {account:c for account,c,role in roles if role=='OWNER'}
+    assert len(owner)==sum(r=='OWNER' for _,_,r in roles)
+    assert len({l[0] for l in loans})==len(loans)
+    branch = lambda row: district[account_district[row[1]]][0]
+    residence = lambda row: district[client[owner[row[1]]][1]][0]
+
+    # Scan source columns once. The benchmark transaction tables are never joined by the validator.
+    withdrawal = Counter()
+    latest_hi, latest_lo = {}, {}
+    trans_count = 0
+    for aid, day, tid, operation, balance in con.execute(
+        'SELECT account_id,date,trans_id,operation,balance FROM trans'
+    ):
+        trans_count+=1
+        if operation=='VYBER KARTOU':
+            withdrawal[aid]+=1
+        if day<=AS_OF:
+            high=(day,tid); low=(day,-tid)
+            if aid not in latest_hi or high>latest_hi[aid][0]:
+                latest_hi[aid]=(high,balance)
+            if aid not in latest_lo or low>latest_lo[aid][0]:
+                latest_lo[aid]=(low,balance)
+
+    sixty=[l[2] for l in loans if l[5]==60]
+    moravia=[l for l in loans if branch(l) in ('north Moravia','south Moravia')]
+    women=[l[2] for l in loans if client[owner[l[1]]][0]=='F']
+    eligible=[l for l in loans if withdrawal[l[1]]]
+    prague=[l for l in loans if residence(l)=='Prague']
+    unemp=[district[account_district[l[1]]][1] for l in loans]
+    vintage=grouped(loans,lambda l:l[3][:4])
+    t8=[]
+    for year in ('1994','1997'):
+        group=vintage[year]
+        finished=[l for l in group if l[4] in FINISHED]
+        t8.append((year,len(group),len(finished),ratio(finished,{'B'}),ratio(group)))
+    bands=defaultdict(list)
+    for l in loans:
+        if l[4]=='D':
+            age=1998-int(client[owner[l[1]]][2])
+            bands['<30' if age<30 else '30-49' if age<50 else '50+'].append(l[2])
+    total=sum(l[2] for l in eligible)
+    high=sum(x[1] for x in latest_hi.values())
+    low=sum(x[1] for x in latest_lo.values())
+    results={
+        'E1': sorted(Counter(l[4] for l in loans).items()),
+        'E2': [(sum(l[2] for l in vintage['1997']),)],
+        'E3': [(mean(sixty),len(sixty))],
+        'T1': [(ratio(loans, weight=True),)],
+        'T2': [(ratio(moravia),)],
+        'T3': [(mean(women),len(women))],
+        'T4': [(total,len(eligible))],
+        'T5': [(ratio(prague),len(prague))],
+        'T6': [(sum(date.fromisoformat(l[3])<=date(1996,12,31)<month_end(l[3],l[5]) for l in loans),)],
+        'T7': [(mean(x for x in unemp if x is not None), unemp.count(None))],
+        'T8': t8,
+        'T9': [(high,)],
+        'T10': [(sum(l[2] for l in loans),)],
+        'X1': [(band,len(amounts),sum(amounts)) for band,amounts in sorted(bands.items())],
+        'X2': [(ratio(loans),)],
+        'X3': sorted(Counter(l[5] for l in loans).items()),
+    }
+    aids={l[1] for l in loans}
+    ambiguous={
+        'A1': {
+            'B_only_count_branch': top(loans,branch,{'B'}),
+            'BD_count_branch': top(loans,branch),
+            'BD_amount_branch': top(loans,branch,weight=True),
+            'BD_count_borrower': top(loans,residence),
+        },
+        'A2': {
+            'accounts':[(len(aids),)],
+            'owners':[(len({owner[a] for a in aids}),)],
+            'all_clients':[(len({c for a,c,_ in roles if a in aids}),)],
+        },
+        'A3': {
+            'relative_to_data_1998':[(mean(l[2] for l in vintage['1998']),)],
+            # The observed archive used a current-date expression. Pin the illustrative 2025 prior year.
+            'relative_to_today':[(mean(l[2] for l in vintage.get('2025',[])),)],
+        }
+    }
+    male_links=[l[2] for l in loans for a,c,_ in roles
+                if a==l[1] and client[c][0]=='M']
+    male_owners=[l[2] for l in loans if client[owner[l[1]]][0]=='M']
+    male_owner_vintage=grouped(
+        (l for l in loans if client[owner[l[1]]][0]=='M'), lambda l:l[3][:4]
+    )
+    owner_1996, owner_1997 = (
+        sum(l[2] for l in male_owner_vintage[year]) for year in ('1996','1997')
+    )
+    return {
+        'raw_snapshot_sha256': SNAPSHOT_SHA,
+        'rows':{'loans':len(loans),'transactions':trans_count},
+        'numeric_reference': results,
+        'ambiguous_alternatives': ambiguous,
+        'illustrations': {
+            'T1_count_weighted': ratio(loans),
+            'T4_transaction_fanout_total': sum(l[2]*withdrawal[l[1]] for l in eligible),
+            'T4_transaction_join_rows': sum(withdrawal[l[1]] for l in eligible),
+            'T6_snapshot_status_misused': sum(l[3]<='1996-12-31' and l[4] in ('C','D') for l in loans),
+            'T9_alternative_tie_break': low,
+            'T9_tie_break_absolute_difference': abs(high-low),
+            'Q132_all_authorized_links': {'rows':len(male_links),'average':mean(male_links)},
+            'Q132_account_owners_only': {'rows':len(male_owners),'average':mean(male_owners)},
+            'Q169_male_owner_growth': {
+                'amount_1996':owner_1996, 'amount_1997':owner_1997,
+                'growth_percent':100*(owner_1997-owner_1996)/owner_1996,
+            },
+        }
+    }

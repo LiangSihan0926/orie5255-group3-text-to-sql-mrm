@@ -1,0 +1,910 @@
+{
+  "pilot": {
+    "runs": 456,
+    "questions": 19,
+    "attempts_from_archived_counter": 532,
+    "strict_verdicts": {
+      "PASS": 192,
+      "FAIL": 186,
+      "PARTIAL": 66,
+      "GUARDRAIL_CAUGHT": 12
+    },
+    "numeric_candidates": {
+      "requests": 312,
+      "action_answer_and_runtime_clean": 227,
+      "key_result_mismatch_among_runtime_clean": 84,
+      "mismatch_by_case": {
+        "E2": 3,
+        "T1": 1,
+        "T2": 4,
+        "T3": 9,
+        "T4": 8,
+        "T5": 13,
+        "T6": 15,
+        "T7": 17,
+        "T8": 2,
+        "T9": 12
+      }
+    },
+    "clarification_action_pass": 6,
+    "clarification_requests": 72,
+    "repair_with_more_than_one_attempt": 49,
+    "repair_policy": {
+      "runs": 36,
+      "strict_pass": 36,
+      "no_sql": 24,
+      "returned_sql": 12,
+      "key_result_match": 7,
+      "key_result_mismatch": 5
+    },
+    "adjudication_transitions": {
+      "PASS -> PASS": 192,
+      "FAIL -> FAIL": 164,
+      "FAIL -> REVIEW": 18,
+      "PARTIAL -> PARTIAL": 66,
+      "GUARDRAIL_CAUGHT -> GUARDRAIL_CAUGHT": 12,
+      "FAIL -> PASS": 4
+    },
+    "review_by_case": {
+      "T7": 12,
+      "T8": 6
+    },
+    "cells": [
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 18
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 3
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 8
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 18
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 3
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "off",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "on",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 8
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 5
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "off",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "E",
+        "total": 9,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "T",
+        "total": 30,
+        "strict_pass": 9
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "A",
+        "total": 9,
+        "strict_pass": 0
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "on",
+        "group": "X",
+        "total": 9,
+        "strict_pass": 9
+      }
+    ]
+  },
+  "references": {
+    "raw_snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+    "rows": {
+      "loans": 682,
+      "transactions": 1056320
+    },
+    "numeric_reference": {
+      "E1": [
+        [
+          "A",
+          203
+        ],
+        [
+          "B",
+          31
+        ],
+        [
+          "C",
+          403
+        ],
+        [
+          "D",
+          45
+        ]
+      ],
+      "E2": [
+        [
+          30731364
+        ]
+      ],
+      "E3": [
+        [
+          244450.75862068965,
+          145
+        ]
+      ],
+      "T1": [
+        [
+          0.1508802001593233
+        ]
+      ],
+      "T2": [
+        [
+          0.12601626016260162
+        ]
+      ],
+      "T3": [
+        [
+          155161.37931034484,
+          348
+        ]
+      ],
+      "T4": [
+        [
+          23120268,
+          148
+        ]
+      ],
+      "T5": [
+        [
+          0.0759493670886076,
+          79
+        ]
+      ],
+      "T6": [
+        [
+          247
+        ]
+      ],
+      "T7": [
+        [
+          2.84213649851632,
+          8
+        ]
+      ],
+      "T8": [
+        [
+          "1994",
+          101,
+          85,
+          0.1411764705882353,
+          0.13861386138613863
+        ],
+        [
+          "1997",
+          196,
+          43,
+          0.06976744186046512,
+          0.1326530612244898
+        ]
+      ],
+      "T9": [
+        [
+          197140434
+        ]
+      ],
+      "T10": [
+        [
+          103261740
+        ]
+      ],
+      "X1": [
+        [
+          "30-49",
+          21,
+          5292288
+        ],
+        [
+          "50+",
+          11,
+          2382492
+        ],
+        [
+          "<30",
+          13,
+          3543024
+        ]
+      ],
+      "X2": [
+        [
+          0.11143695014662756
+        ]
+      ],
+      "X3": [
+        [
+          12,
+          131
+        ],
+        [
+          24,
+          138
+        ],
+        [
+          36,
+          130
+        ],
+        [
+          48,
+          138
+        ],
+        [
+          60,
+          145
+        ]
+      ]
+    },
+    "ambiguous_alternatives": {
+      "A1": {
+        "B_only_count_branch": [
+          [
+            "west Bohemia",
+            0.08771929824561403
+          ]
+        ],
+        "BD_count_branch": [
+          [
+            "west Bohemia",
+            0.15789473684210525
+          ]
+        ],
+        "BD_amount_branch": [
+          [
+            "north Moravia",
+            0.21409353480543888
+          ]
+        ],
+        "BD_count_borrower": [
+          [
+            "north Moravia",
+            0.1623931623931624
+          ]
+        ]
+      },
+      "A2": {
+        "accounts": [
+          [
+            682
+          ]
+        ],
+        "owners": [
+          [
+            682
+          ]
+        ],
+        "all_clients": [
+          [
+            827
+          ]
+        ]
+      },
+      "A3": {
+        "relative_to_data_1998": [
+          [
+            157399.67088607594
+          ]
+        ],
+        "relative_to_today": [
+          [
+            null
+          ]
+        ]
+      }
+    },
+    "illustrations": {
+      "T1_count_weighted": 0.11143695014662756,
+      "T4_transaction_fanout_total": 124697580,
+      "T4_transaction_join_rows": 965,
+      "T6_snapshot_status_misused": 137,
+      "T9_alternative_tie_break": 197140249,
+      "T9_tie_break_absolute_difference": 185,
+      "Q132_all_authorized_links": {
+        "rows": 410,
+        "average": 149609.18048780487
+      },
+      "Q132_account_owners_only": {
+        "rows": 334,
+        "average": 147501.7365269461
+      },
+      "Q169_male_owner_growth": {
+        "amount_1996": 10084572,
+        "amount_1997": 12635988,
+        "growth_percent": 25.300191222790616
+      }
+    }
+  },
+  "reference_comparison": [
+    {
+      "id": "E1",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "E2",
+      "expected_action": "ANSWER_WITH_CAVEAT",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "E3",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T1",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T2",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T3",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T4",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T5",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T6",
+      "expected_action": "ANSWER",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T7",
+      "expected_action": "ANSWER_WITH_CAVEAT",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T8",
+      "expected_action": "ANSWER_WITH_CAVEAT",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T9",
+      "expected_action": "ANSWER_WITH_CAVEAT",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "T10",
+      "expected_action": "ANSWER_WITH_CAVEAT",
+      "evidence_type": "numeric reference",
+      "recorded_match": true
+    },
+    {
+      "id": "A1",
+      "expected_action": "CLARIFY",
+      "evidence_type": "alternatives only; clarification required",
+      "recorded_match": true
+    },
+    {
+      "id": "A2",
+      "expected_action": "CLARIFY",
+      "evidence_type": "alternatives only; clarification required",
+      "recorded_match": true
+    },
+    {
+      "id": "A3",
+      "expected_action": "CLARIFY",
+      "evidence_type": "alternatives only; clarification required",
+      "recorded_match": true
+    },
+    {
+      "id": "X1",
+      "expected_action": "PARTIAL_REFUSE",
+      "evidence_type": "permitted sub-answer",
+      "recorded_match": true
+    },
+    {
+      "id": "X2",
+      "expected_action": "PARTIAL_REFUSE",
+      "evidence_type": "permitted sub-answer",
+      "recorded_match": true
+    },
+    {
+      "id": "X3",
+      "expected_action": "PARTIAL_REFUSE",
+      "evidence_type": "permitted sub-answer",
+      "recorded_match": true
+    }
+  ],
+  "t4_archive_replay": [
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repeat": 1,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repeat": 2,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repeat": 3,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repeat": 1,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repeat": 2,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repeat": 3,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": true,
+      "candidate_recognized": true,
+      "gated_release_proxy": true
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repeat": 1,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repeat": 2,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repeat": 3,
+      "attempts": 1,
+      "base_release_proxy": true,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repeat": 1,
+      "attempts": 3,
+      "base_release_proxy": false,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repeat": 2,
+      "attempts": 2,
+      "base_release_proxy": true,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repeat": 3,
+      "attempts": 3,
+      "base_release_proxy": true,
+      "matched_key_result": false,
+      "candidate_recognized": false,
+      "gated_release_proxy": false
+    }
+  ],
+  "t4_fixtures": {
+    "expected": {
+      "base": 100,
+      "extra_event_A": 100,
+      "first_event_B": 300,
+      "same_amount_C": 200
+    },
+    "candidates": [
+      {
+        "candidate": "approved_in",
+        "semantically_correct": true,
+        "gate_accepts": true,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 300,
+          "same_amount_C": 200
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": true,
+        "passes_all": true
+      },
+      {
+        "candidate": "approved_exists",
+        "semantically_correct": true,
+        "gate_accepts": true,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 300,
+          "same_amount_C": 200
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": true,
+        "passes_all": true
+      },
+      {
+        "candidate": "equivalent_grouped_join",
+        "semantically_correct": true,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 300,
+          "same_amount_C": 200
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": true,
+        "passes_all": true
+      },
+      {
+        "candidate": "equivalent_aliases",
+        "semantically_correct": true,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 300,
+          "same_amount_C": 200
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": true,
+        "passes_all": true
+      },
+      {
+        "candidate": "transaction_fanout",
+        "semantically_correct": false,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 200,
+          "first_event_B": 300,
+          "same_amount_C": 200
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": false,
+        "passes_all": false
+      },
+      {
+        "candidate": "constant_answer",
+        "semantically_correct": false,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 100,
+          "same_amount_C": 100
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": false,
+        "passes_all": false
+      },
+      {
+        "candidate": "holding_card_proxy",
+        "semantically_correct": false,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 300,
+          "extra_event_A": 300,
+          "first_event_B": 300,
+          "same_amount_C": 300
+        },
+        "passes_base": false,
+        "passes_two_proposed_variants": false,
+        "passes_all": false
+      },
+      {
+        "candidate": "dedup_by_amount",
+        "semantically_correct": false,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 100,
+          "extra_event_A": 100,
+          "first_event_B": 300,
+          "same_amount_C": 100
+        },
+        "passes_base": true,
+        "passes_two_proposed_variants": true,
+        "passes_all": false
+      },
+      {
+        "candidate": "loan_count",
+        "semantically_correct": false,
+        "gate_accepts": false,
+        "amounts": {
+          "base": 1,
+          "extra_event_A": 1,
+          "first_event_B": 2,
+          "same_amount_C": 2
+        },
+        "passes_base": false,
+        "passes_two_proposed_variants": false,
+        "passes_all": false
+      }
+    ]
+  }
+}

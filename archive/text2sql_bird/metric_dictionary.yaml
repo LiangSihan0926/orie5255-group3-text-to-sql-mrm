@@ -1,0 +1,67 @@
+# Metric dictionary (semantic layer) for the BIRD `financial` database
+# Used by node N3 (metric-definition resolution) and checked by N6 (semantic validation).
+# Every governed metric has ONE approved definition. Anything not listed here => N1 must
+# ask a clarifying question or N9 must state the assumption explicitly.
+
+meta:
+  database: financial.sqlite  (BIRD dev set; originally PKDD'99 Berka Czech bank data)
+  data_period: "1993-01-01 to 1998-12-31"
+  snapshot_date: "1998-12-31"     # loan.status reflects THIS date, not the loan date
+  currency: "CZK (original Berka data). NOTE: BIRD's database_description says 'USD' -- treat as a known documentation defect; always label amounts as 'CZK (source docs say USD)'."
+  grain:
+    loan: "one row per loan; at most one loan per account (682 loans / 682 accounts)"
+    account: "one row per account"
+    disp: "one row per (client, account) role; an account can have OWNER + DISPONENT -> join fan-out"
+    trans: "one row per transaction (~1.06M rows); many per account per day"
+    district: "77 districts; district 69 (Jesenik) has NULL A12 (unemployment 1995) and A15 (crimes 1995)"
+
+entities:
+  borrower:
+    definition: "the client with disp.type = 'OWNER' on the loan's account"
+    rule: "Joins from loan to client MUST go through disp with disp.type = 'OWNER' unless the user explicitly asks about all authorised users."
+  borrower_district:
+    definition: "client.district_id of the OWNER (where the borrower lives)"
+  branch_district:
+    definition: "account.district_id (where the account is held)"
+    rule: "'district/region of the loan' is AMBIGUOUS between branch and borrower; default = branch_district, state it in the answer. 60 loans have different branch vs borrower districts."
+
+status_codes:
+  A: "contract finished, no problems"
+  B: "contract finished, loan not paid"         # realised loss
+  C: "running contract, OK so far"
+  D: "running contract, client in debt"         # currently delinquent
+  running: [C, D]
+  finished: [A, B]
+
+metrics:
+  bad_loan_rate_count:
+    definition: "COUNT(status IN ('B','D')) / COUNT(*) over the loans in scope"
+    numerator: "loans with status B or D"
+    denominator: "all loans in scope (A,B,C,D)"
+    weighting: count
+  bad_loan_rate_amount:
+    definition: "SUM(amount WHERE status IN ('B','D')) / SUM(amount) over loans in scope"
+    weighting: "approved amount (loan.amount)"
+    note: "Default when the user says 'by amount', 'exposure-weighted' or 'balance-weighted'. There is no outstanding-balance field; approved amount is a proxy and must be stated."
+  realised_loss_rate:
+    definition: "COUNT(status='B') / COUNT(status IN ('A','B'))  -- finished contracts only"
+    caveat: "Recent vintages have few finished contracts -> survivorship/maturity bias. Never compare across vintages without showing the finished-contract count."
+  delinquency_rate_running:
+    definition: "COUNT(status='D') / COUNT(status IN ('C','D'))  -- running contracts only"
+  active_loans_as_of(t):
+    definition: "loans with date <= t AND date(date, '+duration months') > t"
+    rule: "Do NOT use status IN ('C','D') for any date other than snapshot_date 1998-12-31."
+  account_balance_as_of(t):
+    definition: "balance of the account's last transaction with date <= t, ordering by (date, trans_id)"
+    caveat: "Within-day ordering is not recoverable from trans_id: about 15% of account-days do not reconcile (prior balance + net flow != any same-day balance). Report as approximate."
+  ratio_aggregation_rule:
+    rule: "Portfolio-level ratios are ratio-of-sums, never average-of-ratios across groups, unless the user explicitly asks for an unweighted average of group rates."
+
+pii_policy:
+  restricted_columns: [client.birth_date, trans.account, order.account_to]
+  rule: "Restricted columns may be used in WHERE/GROUP BY (e.g. age bands) but never returned row-level. Row-level client listings are limited to client_id."
+
+execution_policy:
+  statements: "SELECT / WITH only (read-only connection, mode=ro)"
+  row_limit: 1000
+  timeout_seconds: 10

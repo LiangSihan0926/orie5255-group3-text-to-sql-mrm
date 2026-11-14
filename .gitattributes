@@ -1,0 +1,3 @@
+# Archived inputs must retain their original bytes for the checksum checks.
+archive/** -text
+data/financial.sqlite.gz -text

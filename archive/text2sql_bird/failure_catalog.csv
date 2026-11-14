@@ -1,0 +1,22 @@
+failure_class,node,detectability,severity,openai_gpt-4.1 | baseline / no repair,openai_gpt-4.1 | baseline / repair,openai_gpt-4.1 | dict / no repair,openai_gpt-4.1 | dict / repair,openai_gpt-4o-mini | baseline / no repair,openai_gpt-4o-mini | baseline / repair,openai_gpt-4o-mini | dict / no repair,openai_gpt-4o-mini | dict / repair,total,example_ids
+no_clarification,N1,silent,High: one reading chosen silently; other readings give a different answer,9,9,6,6,9,9,9,9,66,A1 A2 A3
+false_refusal,N1/N4,obvious to user,Medium: availability loss; analyst falls back to manual work,0,0,0,0,18,20,6,7,51,E2 T1 T2 T5 T7 T8 T9
+value_linking,N2,NULL/0 result,"Medium: obviously empty, unless a wrong value happens to exist",6,1,3,3,0,0,3,2,18,T2 T5
+metric_substitution,N3,plausible number,Review: defensible but non-governed definition,3,3,3,3,0,0,3,3,18,T7 T8
+followed_documentation_defect,N2 metadata,NULL/0 result,Medium: wrong data dictionary (dates documented as YYMMDD) propagates into SQL,6,9,0,1,0,0,0,0,16,E2 T6 T8
+missing_caveat,N9,silent,"Medium: correct number, misleading presentation",3,3,0,0,5,4,0,0,15,T10 T7
+join_fanout,N4/N6,plausible number,High: inflated totals look reasonable,0,0,0,0,6,6,1,2,15,T3 T4
+snapshot_balance,N3,huge number,High unless caught by magnitude check,3,3,3,3,0,0,0,0,12,T9
+policy_violation_blocked,N6,blocked,Low residual: guardrail worked; would be High without it,3,0,3,0,3,0,3,0,12,X1
+unnecessary_clarification,N1/N2,obvious to user,Low: asks about values that exist in the data (no value samples in prompt),0,3,3,1,0,0,0,0,7,T2
+point_in_time_snapshot_status,N3,plausible number,High: uses 1998 status for a 1996 question,3,0,0,0,0,2,0,0,5,T6
+temporal_misreading,N1/N3,plausible number,High: extra/incorrect date filter,0,0,0,0,0,0,2,3,5,T7
+value_linking_overmatch,N2,plausible number,High: fuzzy match silently adds Praha-vychod / Praha-zapad,0,2,0,2,0,0,0,0,4,T5
+operator_precedence,N4,plausible number,High: silent wrong filter,0,0,0,0,3,1,0,0,4,T6
+format_noncompliance,N4 output contract,parser,"Low: correct answer, wrong envelope",0,0,0,0,0,0,3,1,4,E3 T3
+hallucinated_schema,N2,execution error,Low: fails loudly,0,0,0,0,0,0,3,0,3,T4
+dialect_string_literal,N4,0/NULL result,Medium: caught by N8 sanity check,0,0,0,0,0,0,3,0,3,T6
+semantic_substitution_after_repair,N4-N8 loop,plausible/huge number,High: repair changed the question to pass checks,0,0,0,0,0,0,0,3,3,T4
+wrong_join_key,N2/N4,plausible number,High: silent wrong population,0,0,0,0,1,0,0,0,1,T5
+dialect_integer_division,N4,0 result,Medium: caught by N8 sanity check,0,0,0,0,0,0,1,0,1,T1
+syntax_error,N4,execution error,Low: fails loudly,0,0,0,0,0,0,1,0,1,T7
