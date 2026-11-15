@@ -76,13 +76,13 @@ The T4 contract is the total approved amount for loans on accounts with at least
 | Node | Observed evidence or reconstruction |
 | --- | --- |
 | N1–N3 | Observed prompt requested a total. The archive has no separate routing or contract fields. The contract above is the validator’s reconstruction. |
-| N4 | GPT-4o mini, dictionary + repair, repeat 2. First saved feedback was “no such column: c.account_id”. The first SQL text is absent. |
+| N4 | Case T4 in `llm_runs_openai_gpt-4o-mini_repair2.csv`, dictionary, repeat 2. First feedback was “no such column: c.account_id”. The first SQL text is absent. |
 | N5–N7 | Final SQL selected card types, with the model assumption that possession implied use. The card join condition equated a disposition account field to itself, multiplying rows. The final query executed and produced 111,981,565,824. |
 | N8–N9 | The saved final action was answer, with no logged guardrail or sanity flag. The strict grader marked it FAIL. This is an eligible candidate in the replay and no actual analyst release is observed. |
 
 An independent account eligibility scan gives 148 loans totaling 23,120,268 source units. Even with the correct withdrawal code, a simple event join followed by summation gives 124,697,580 across 965 joined rows. This distinguishes a cohort substitution from the independent fan-out mechanism. Both can produce non-null positive totals. The worked result is materially wrong because the amount and cohort could change the segment the analyst investigates.
 
-A contrasting T6 trace shows why eliminating repair entirely would sacrifice recovery. The smaller model’s dictionary/repair first repeat logs two all-zero flags and finally returns 247. The independently reproduced figure counts scheduled contracts with origination at or before 1996-12-31 and maturity after it. Applying the later C/D status labels to the cutoff would give 137. The study can verify the final estimate and reason codes. The earlier SQL and true historical repayment states are unavailable. A date-sensitive answer must carry that distinction.
+A contrasting T6 trace shows that repair can recover a result. The smaller model’s dictionary/repair first repeat logs two all-zero flags and finally returns 247. That figure counts scheduled contracts with origination at or before 1996-12-31 and maturity after it. Applying later C/D status labels to the cutoff gives 137. The earlier SQL and the actual historical repayment states are unavailable.
 
 The most severe paths end in decision-changing aggregates or inappropriate data access. N2 may propagate a currency documentation error into every downstream label. N6 may permit reads beyond the analyst's role despite read-only execution. N9 can detach an otherwise correct value from its cohort or proxy label. Retries, timeouts and false holds also impose operating and third-party service costs. Appendix A maps all nine nodes to causes and consequences.
 
@@ -125,7 +125,25 @@ Among 312 routine/trap records, 227 answered with a saved nonempty result and no
 
 Only six of 72 ambiguity records received a strict action pass. All 36 repair-enabled policy records passed the action-based rule, including 24 without SQL. Of the 12 that returned SQL, seven matched the permitted numeric target and five did not. This weakens a claim of useful partial refusal even before assessing the wording. The records do not establish complete permission enforcement or the absence of leakage in another environment.
 
-Dictionary cells improved trap counts under both model labels. The changes bundle different kinds of added context. The repair setting also bundles retries and the generic N8 check, so the comparison does not identify the causal effect of either component. Repeats share questions, the pilot uses one historical snapshot, and the saved model labels are aliases. We report descriptive counts and failure mechanisms without population comparisons.
+Dictionary cells improved trap counts under both model labels. Dictionary contents bundle business definitions and metadata corrections. The repair setting bundles retries and the generic N8 check. These comparisons are descriptive. Repeats share cases, the pilot uses one snapshot, and the model labels are aliases.
+
+<!-- page -->
+
+## 6.1 What the saved results support
+
+For routine and trap records, a runtime-clean answer requires action `answer`, saved SQL and result, and no final guardrail, execution error or N8 flag. All such answers have an archived key-result label. Coverage uses all requests as the denominator. The mismatch share among answers uses only the runtime-clean set. A strict pass also enforces the case’s archived action and caveat rules.
+
+| Case family | Requests | Runtime-clean | Key match / mismatch | Strict pass |
+| --- | --- | --- | --- | --- |
+| Routine | 72 | 63 | 60 / 3 | 58 |
+| Trap | 240 | 164 | 83 / 81 | 68 |
+| Total | 312 | 227 | 143 / 84 | 126 |
+
+For traps, the 81 mismatches are 49.4% of runtime-clean answers and 33.8% of all trap requests. Twelve of the 84 pooled mismatches carry a rule-based T7 REVIEW label. Setting those aside yields 72/215 (33.5%), compared with 84/227 (37.0%) using all observed labels. Neither estimate is an adjudicated error rate. Seventeen numeric matches failed the archived caveat check, including 12 T10 currency answers. For repeat stability, the 80 trap case-by-configuration blocks contain three repeats each. All three pass in 22 blocks, none pass in 57, and two pass in one. The counts expose recurring case failures without counting repeats as independent questions.
+
+For the 24 T4 records, we compare visible integer totals directly to the independent loan-grain reference of 23,120,268 source units. Twelve match exactly, eight overstate the total by at least 570.3%, and four fall outside the runtime-clean answer set. For the 32 numeric records with multiple attempts, four finish with a strict pass, two match with a failed caveat, 11 finish with a mismatch and 15 have no runtime-clean answer. Records that entered repair are selected by the controller, so these proportions describe observed outcomes on the retry path.
+
+The 36 repair-enabled policy records are action passes, but their usefulness varies by case. X1 has nine records with no SQL and three runtime-clean mismatches. Those three candidates projected loan-level amounts and the saved result reports 45 rows, while the approved sub-answer was a three-row age-band aggregate. There is evidence of a grain-control gap and no observed analyst disclosure. X2 has six matching aggregates, two mismatches and four without SQL. X3 has one match and 11 without SQL. These checks require both permitted scope and a correct allowed result.
 
 <!-- page -->
 
@@ -138,9 +156,9 @@ Wretblad et al. reviewed all 106 financial development items in the release they
 | Item | Archived reference and independent result | Validation consequence |
 | --- | --- | --- |
 | Q132, male borrowers’ mean amount | Archived reference includes all male disposition relationships. Reproduction at that join grain gives 410 links, mean 149,609.18. Restricting to male owners gives 334 loans, mean 147,501.74. | Confirm what “borrower” means before using either value as truth. The archive query differs from the district-join example in the paper’s Figure 1. |
-| Q169, 1996–1997 growth | Its reference explicitly filters male owners. Independent totals are 10,084,572 and 12,635,988 source units; growth is 25.3002%. | A role-filtered benchmark example can support a check when its explicit semantics align with the intended contract. |
+| Q169, 1996–1997 growth | Its reference filters male owners as a cohort. Independent totals are 10,084,572 and 12,635,988 source units, giving 25.3002% growth. | “For a male client” could refer to one customer. An individual calculation would require a client identifier. |
 
-T7 asks for a “loan-weighted” unemployment rate. The reference interprets that as one observation per eligible loan, giving 2.8421% and excluding eight missing district values. Amount weighting is plausible absent clarification. T8 asks about “loss rate.” Finished status B incidence is 14.12% and 6.98% for the two cohorts; that is not monetary loss severity, and the 1997 cohort has far fewer finished loans. Label the proposed proxy and ask about realized loss and observation window. T10 conflicts with dollar labels in metadata. The reference total is 103,261,740 source units, and conversion requires validated currency, exchange rates and dates.
+T7’s “loan-weighted” unemployment rate is 2.8421% by loan count and 2.7720% by approved amount. Both use the same 674 loans and omit eight missing rates. All 12 reviewed T7 records display the amount-weighted value at archive precision. Ask which weight to use before scoring. In T8, 85/101 of the 1994 vintage had finished versus 43/196 of the 1997 vintage (84.16% and 21.94%). Finished status B shares are 12/85 (14.12%) and 3/43 (6.98%). Across all originations, B/D shares are much closer at 13.86% and 13.27%. Review vintage maturity, define the proxy and disclose that monetary loss is unavailable. For T10, keep 103,261,740 in source units until currency, exchange rate and date are verified.
 
 The two official spot checks are diagnostic. They do not estimate noise prevalence or rank models on the 106 items. A defensible reference bundle records source version, intended interpretation, independent calculation, alternate definitions, evidence of disagreement and a signed owner decision for material ambiguities.
 
@@ -193,7 +211,7 @@ Prevent unauthorized actions at N1 and N5 before access. Parse and validate the 
 
 At N6, enforce an independent authorization policy for role, schema, fields, templates and aggregation. A read-only connection limits modification and still permits reads unless access is constrained. Use scoped database views, read-only credentials, vetted templates and a compile-time authorizer where appropriate. SQLGlot can inspect structure at N5, while SQLite authorization at N6 controls what the actual engine may access. Both rely on correctly specified policy, and neither determines which financial measure the analyst meant. Test them together in the target dialect [10, 16]. Exclude row-level identifiers and restrict small cohorts under a business-owned policy. Observe repeated-query behavior to manage differencing risk.
 
-Execute with a single approved snapshot ID, timeout and row budget at N7. Treat truncation or uncertain time basis as a hold. At N8, compare permitted aggregates with an independently calculated count or reconciliation, when feasible. An all-zero result may be correct; the eligible population and missing-data rules should determine whether it is suspicious. For T9, explicitly choose the last transaction at or before the cutoff and a tie-break rule. Using a different valid tie-break changes the total by 185 source units in this snapshot. The materiality of that change depends on the signed policy and reporting use.
+Execute with a single approved snapshot ID, timeout and row budget at N7. Hold truncation or an uncertain time basis. At N8, reconcile permitted aggregates against an independent calculation when feasible. Evaluate zeros against eligibility and missing-data rules. For T9, using the lowest instead of highest transaction ID on each account’s last observed date changes the total by 185 source units, but absolute balance changes sum to 24,923 across 180 accounts. Offsetting changes motivate a protected account-level reconciliation before releasing only the aggregate. Transaction ID is a deterministic tie-break convention with no independently verified intraday order.
 
 Corrective behavior is bounded. A recoverable syntax or execution issue can enter N4 again under the same locked contract with a limit of two rewrites. A policy denial, unresolved definition, changed permissions or unverified contract causes immediate defer/deny. Fail closed on missing evidence and preserve safe reason codes. N9 renders the verified structured fields with a deterministic template and provides the analyst a meaningful release or hold decision. Keep minimal, access-controlled and redacted logs, including version IDs and reasons for manual decisions.
 
@@ -308,4 +326,4 @@ The numerical values below reflect fixed definitions and the archive’s display
 
 ### Reproduction
 
-From the repository root, run `python3 -B -m validation.run`. Read the archived case and comparator definitions, `evidence/validation_results.json`, and the three generated CSV tables. `docs/evaluation_protocol.md` contains the holdout design, scoring policy and worksheet. Raw row data, operational permissions and human sign-offs are outside the reported observations.
+From the repository root, run `python3 -B -m validation.run`. Read the archived case and comparator definitions and the generated JSON and CSV summaries under `evidence/`. The evaluation protocol contains the holdout design, scoring policy and worksheet. Raw row data, operational permissions and human sign-offs are outside the reported observations.

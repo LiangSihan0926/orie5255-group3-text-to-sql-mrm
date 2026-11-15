@@ -16,7 +16,10 @@ const replay = evidence.t4_archive_replay;
 const expected = evidence.t4_fixtures.expected;
 const fixtures = evidence.t4_fixtures.candidates;
 const [correctTotal, correctLoans] = evidence.references.numeric_reference.T4[0];
-const runtime = pilot.numeric_candidates;
+const trap = pilot.numeric_by_family.trap;
+const t4Audit = evidence.t4_amount_audit;
+const t4Wrong = t4Audit.filter((row) => row.outcome === "wrong total").length;
+const t4Clean = t4Audit.filter((row) => row.observed_amount !== null).length;
 const number = (value) => value.toLocaleString("en-US");
 const mean = (value) => value.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -176,15 +179,15 @@ const wretblad = "Wretblad et al. (2024), Table 1 and Figure 1. https://aclantho
     cells.push([`${label} / ${repair}`, ...values.map((r) => `${r.strict_pass}/${r.total}`)]);
   }
   table(slide, cells, [301, 170, 180], 221, [58, 58, 58, 58, 58], { alignNumeric: true });
-  text(slide, "mismatch-ratio", `${runtime.key_result_mismatch_among_runtime_clean} / ${runtime.action_answer_and_runtime_clean}`, 780, 243, 423, 95,
+  text(slide, "mismatch-ratio", `${trap.key_mismatch} / ${trap.runtime_clean}`, 780, 243, 423, 95,
     { size: 65, bold: true, color: C.red });
-  text(slide, "mismatch-description", "Runtime-clean routine or trap answers that differ from the archive’s key result", 780, 353, 411, 119,
+  text(slide, "mismatch-description", "Runtime-clean trap answers that differ from the archive’s key result", 780, 353, 411, 119,
     { size: 26, color: C.muted });
-  footer(slide, "18 records require definition review. The mismatch count is a screening statistic.", 571);
+  footer(slide, "All trap requests: 240. A mismatch flags a result for review.", 571);
   note(slide, "04:50–06:10 · Sihan", [
     "Dictionary results improved under both model labels in these cases. GPT-4.1 gets nine baseline and 18 dictionary passes; GPT-4o mini gets zero baseline and five or nine with the dictionary. These settings are bundled, so we cannot isolate an effect of repair or check quality.",
-    "There were 312 routine/trap runs. Of 227 runtime-clean answer candidates, 84 mismatched the archived key-result rule. Some are alternate definitions or grader disagreements. Materiality requires independent business adjudication.",
-    "Only six of 72 ambiguity cases passed the action check. The 36 repair-enabled policy action passes included 24 with no SQL, and just seven of 12 with SQL matched the permitted result. The T6 positive repair returned 247 scheduled contracts after two all-zero flags. Minxi will cover reference risk and the controls.",
+    "The 240 trap requests yielded 164 runtime-clean answers and 81 mismatches. Twelve T7 matches to an alternative definition are still review cases. For T4 alone, eight of 20 clean candidates overstate the independently computed amount by at least 570 percent.",
+    "Only six of 72 ambiguity records pass the archived action check. Three X1 action passes showed loan-level amounts where the task accepts an aggregate. These are candidate observations. Minxi will cover reference risk and the controls.",
   ], [archiveSource, "Report §§4–6; evidence/pilot_cells.csv."]);
 }
 
@@ -202,7 +205,7 @@ const wretblad = "Wretblad et al. (2024), Table 1 and Figure 1. https://aclantho
   note(slide, "06:10–07:10 · Minxi", [
     "The Wretblad result is from their release. It includes 22 erroneous SQL references. We independently spot-check two official items in the archive, separate from the model experiment. In Q132 the archived reference includes authorized clients as well as owners. That changes the mean when borrower means owner.",
     "Our archive version differs from the district-join example in their Figure 1. For Q169, a growth comparison, the archived query specifies owners. We computed each year from raw rows and compared the contract to the archived SQL.",
-    "Our own benchmark has the same vulnerability. T7's weights and T8's loss definition need review. Agreement under a fixed definition is evidence, and selecting the definition is a separate business step.",
+    "Our cases have the same vulnerability. T7 yields 2.8421% using loan counts and 2.7720% using approved amounts. Twelve review records display the second value. T8 needs a definition of loss and a check on how many loans have finished in each vintage.",
   ], [wretblad, bird, "Report §7; evidence/validation_results.json."]);
 }
 
@@ -295,7 +298,8 @@ const wretblad = "Wretblad et al. (2024), Table 1 and Figure 1. https://aclantho
     ["What still needs review?", "Blinded business labels, verified access controls, held-out results and reviewer sign-off."],
   ], [390, 746], 213, [56, 79, 79, 79, 79], { size: 22 });
   note(slide, "Backup · Q&A", [
-    "If asked about false positives, compare two correct forms deferred by the template gate with four correct forms passing all fixtures. If asked about the 84 mismatches, distinguish comparator differences from material confirmed errors. If asked what a refusal pass means, discuss the 24/36 without SQL and the five numeric misses.",
+    `If asked about materiality, ${t4Wrong} of ${t4Clean} runtime-clean T4 candidates returned a wrong total under the independently verified amount. The 84 overall mismatches use the archive comparator and include 12 T7 definition disputes. In T10, all 24 amounts match, but 12 caveat checks fail.`,
+    "If asked about false positives, compare two correct forms deferred by the template gate with four correct forms passing all fixtures. If asked what a refusal pass means, discuss the 24/36 without SQL and the three X1 candidates with the wrong output grain.",
     "For reproducibility, run python3 -B -m validation.run from the repository. The data checksum is pinned and model calls are unnecessary.",
   ], ["README.md, docs/evaluation_protocol.md and report Appendix D."]);
 }

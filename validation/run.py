@@ -3,7 +3,6 @@ from argparse import ArgumentParser
 from pathlib import Path
 from hashlib import sha256
 import csv
-import gzip
 import json
 from . import audit, controls, reference
 
@@ -32,6 +31,7 @@ def run(root=ROOT,db=None):
         raise ValueError(f'Reference comparison disagrees on {", ".join(mismatches)}')
     return dict(pilot=metrics,references=refs,reference_comparison=comparisons,
                 t4_archive_replay=controls.replay_t4(rows),
+                t4_amount_audit=audit.t4_amount_audit(rows,refs['numeric_reference']['T4'][0][0]),
                 t4_fixtures={'expected':controls.SCENARIOS,'candidates':controls.fixtures()})
 
 def write(report,out):
@@ -41,6 +41,9 @@ def write(report,out):
         ('pilot_cells.csv',report['pilot']['cells']),
         ('reference_comparison.csv',report['reference_comparison']),
         ('t4_archive_replay.csv',report['t4_archive_replay']),
+        ('numeric_by_configuration.csv',report['pilot']['numeric_by_configuration']),
+        ('repair_policy_by_case.csv',report['pilot']['repair_policy_by_case']),
+        ('t4_amount_audit.csv',report['t4_amount_audit']),
     ):
         with (out/filename).open('w',encoding='utf-8',newline='') as f:
             w=csv.DictWriter(f,fieldnames=records[0].keys(),lineterminator='\n')

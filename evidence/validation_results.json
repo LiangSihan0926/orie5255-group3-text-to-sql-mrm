@@ -13,6 +13,9 @@
       "requests": 312,
       "action_answer_and_runtime_clean": 227,
       "key_result_mismatch_among_runtime_clean": 84,
+      "rule_labeled_review_within_clean_mismatches": {
+        "T7": 12
+      },
       "mismatch_by_case": {
         "E2": 3,
         "T1": 1,
@@ -26,6 +29,133 @@
         "T9": 12
       }
     },
+    "numeric_by_family": {
+      "routine": {
+        "requests": 72,
+        "runtime_clean": 63,
+        "key_match": 60,
+        "key_mismatch": 3,
+        "comparable_missing": 0,
+        "strict_pass": 58
+      },
+      "trap": {
+        "requests": 240,
+        "runtime_clean": 164,
+        "key_match": 83,
+        "key_mismatch": 81,
+        "comparable_missing": 0,
+        "strict_pass": 68
+      }
+    },
+    "numeric_by_configuration": [
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "off",
+        "requests": 39,
+        "runtime_clean": 36,
+        "key_match": 18,
+        "key_mismatch": 18,
+        "comparable_missing": 0,
+        "strict_pass": 15
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "baseline",
+        "repair": "on",
+        "requests": 39,
+        "runtime_clean": 33,
+        "key_match": 20,
+        "key_mismatch": 13,
+        "comparable_missing": 0,
+        "strict_pass": 15
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "off",
+        "requests": 39,
+        "runtime_clean": 36,
+        "key_match": 27,
+        "key_mismatch": 9,
+        "comparable_missing": 0,
+        "strict_pass": 27
+      },
+      {
+        "model": "gpt-4.1",
+        "prompt": "dict",
+        "repair": "on",
+        "requests": 39,
+        "runtime_clean": 34,
+        "key_match": 26,
+        "key_mismatch": 8,
+        "comparable_missing": 0,
+        "strict_pass": 26
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "off",
+        "requests": 39,
+        "runtime_clean": 21,
+        "key_match": 11,
+        "key_mismatch": 10,
+        "comparable_missing": 0,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "baseline",
+        "repair": "on",
+        "requests": 39,
+        "runtime_clean": 19,
+        "key_match": 10,
+        "key_mismatch": 9,
+        "comparable_missing": 0,
+        "strict_pass": 6
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "off",
+        "requests": 39,
+        "runtime_clean": 23,
+        "key_match": 13,
+        "key_mismatch": 10,
+        "comparable_missing": 0,
+        "strict_pass": 13
+      },
+      {
+        "model": "gpt-4o-mini",
+        "prompt": "dict",
+        "repair": "on",
+        "requests": 39,
+        "runtime_clean": 25,
+        "key_match": 18,
+        "key_mismatch": 7,
+        "comparable_missing": 0,
+        "strict_pass": 18
+      }
+    ],
+    "trap_strict_repeat_blocks": {
+      "0": 57,
+      "1": 0,
+      "2": 1,
+      "3": 22
+    },
+    "retried_numeric": {
+      "requests": 32,
+      "runtime_clean": 17,
+      "key_match": 6,
+      "key_mismatch": 11,
+      "comparable_missing": 0,
+      "strict_pass": 4
+    },
+    "numeric_key_match_with_failed_caveat": {
+      "T10": 12,
+      "E2": 2,
+      "T7": 3
+    },
     "clarification_action_pass": 6,
     "clarification_requests": 72,
     "repair_with_more_than_one_attempt": 49,
@@ -37,6 +167,35 @@
       "key_result_match": 7,
       "key_result_mismatch": 5
     },
+    "repair_policy_by_case": [
+      {
+        "id": "X1",
+        "requests": 12,
+        "action_pass": 12,
+        "no_sql": 9,
+        "runtime_clean_key_match": 0,
+        "runtime_clean_key_mismatch": 3,
+        "sql_without_comparable_runtime_clean_result": 0
+      },
+      {
+        "id": "X2",
+        "requests": 12,
+        "action_pass": 12,
+        "no_sql": 4,
+        "runtime_clean_key_match": 6,
+        "runtime_clean_key_mismatch": 2,
+        "sql_without_comparable_runtime_clean_result": 0
+      },
+      {
+        "id": "X3",
+        "requests": 12,
+        "action_pass": 12,
+        "no_sql": 11,
+        "runtime_clean_key_match": 1,
+        "runtime_clean_key_mismatch": 0,
+        "sql_without_comparable_runtime_clean_result": 0
+      }
+    ],
     "adjudication_transitions": {
       "PASS -> PASS": 192,
       "FAIL -> FAIL": 164,
@@ -516,8 +675,39 @@
       "T4_transaction_fanout_total": 124697580,
       "T4_transaction_join_rows": 965,
       "T6_snapshot_status_misused": 137,
+      "T7_weight_sensitivity": {
+        "included_loans": 674,
+        "excluded_loans": 8,
+        "approved_amount_denominator": 101323308,
+        "count_weighted_percent": 2.84213649851632,
+        "amount_weighted_percent": 2.7719750050008236
+      },
+      "T8_vintage_sensitivity": [
+        {
+          "year": "1994",
+          "originated_loans": 101,
+          "finished_loans": 85,
+          "finished_status_b": 12,
+          "finished_share": 0.8415841584158416,
+          "finished_b_count_share": 0.1411764705882353,
+          "all_bd_count_share": 0.13861386138613863,
+          "finished_b_approved_amount_share": 0.22305301267707897
+        },
+        {
+          "year": "1997",
+          "originated_loans": 196,
+          "finished_loans": 43,
+          "finished_status_b": 3,
+          "finished_share": 0.2193877551020408,
+          "finished_b_count_share": 0.06976744186046512,
+          "all_bd_count_share": 0.1326530612244898,
+          "finished_b_approved_amount_share": 0.08322604106263576
+        }
+      ],
       "T9_alternative_tie_break": 197140249,
       "T9_tie_break_absolute_difference": 185,
+      "T9_tie_break_changed_accounts": 180,
+      "T9_tie_break_gross_absolute_change": 24923,
       "Q132_all_authorized_links": {
         "rows": 410,
         "average": 149609.18048780487
@@ -769,6 +959,248 @@
       "matched_key_result": false,
       "candidate_recognized": false,
       "gated_release_proxy": false
+    }
+  ],
+  "t4_amount_audit": [
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 1,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 1,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 2,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 3,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 2,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 3,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 1,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 2,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 3,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 1,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 2,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4.1",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 3,
+      "observed_amount": 23120268,
+      "expected_amount": 23120268,
+      "relative_error": 0.0,
+      "outcome": "exact total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 1,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 2,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "off",
+      "repeat": 3,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 1,
+      "observed_amount": null,
+      "expected_amount": 23120268,
+      "relative_error": null,
+      "outcome": "outside runtime-clean answer set"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 2,
+      "observed_amount": null,
+      "expected_amount": 23120268,
+      "relative_error": null,
+      "outcome": "outside runtime-clean answer set"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "off",
+      "repeat": 3,
+      "observed_amount": null,
+      "expected_amount": 23120268,
+      "relative_error": null,
+      "outcome": "outside runtime-clean answer set"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 1,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 2,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "baseline",
+      "repair": "on",
+      "repeat": 3,
+      "observed_amount": 154976052,
+      "expected_amount": 23120268,
+      "relative_error": 5.70303873640219,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 1,
+      "observed_amount": null,
+      "expected_amount": 23120268,
+      "relative_error": null,
+      "outcome": "outside runtime-clean answer set"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 2,
+      "observed_amount": 111981565824,
+      "expected_amount": 23120268,
+      "relative_error": 4842.4371878388265,
+      "outcome": "wrong total"
+    },
+    {
+      "model": "gpt-4o-mini",
+      "prompt": "dict",
+      "repair": "on",
+      "repeat": 3,
+      "observed_amount": 92109472080,
+      "expected_amount": 23120268,
+      "relative_error": 3982.9275254075774,
+      "outcome": "wrong total"
     }
   ],
   "t4_fixtures": {

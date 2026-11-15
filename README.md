@@ -49,6 +49,12 @@ live database credentials are unnecessary.
 - Among 312 routine/trap records, 227 had an answer action and a final
   result without a logged guardrail, execution error, or result flag. Of
   those 227, 84 differed on the archive's key-result check.
+- Trap questions account for 81 of the 84 mismatches (81/164 runtime-clean
+  trap answers). Twelve pooled mismatches are open T7 weighting disputes.
+  Separately, 17 key-result matches failed the archived caveat check.
+- For T4, 12 of 24 archived records returned the independently verified
+  amount, eight returned larger amounts, and four lacked a runtime-clean
+  answer. The smallest of the eight overstatements was 570.3%.
 - For T4, a narrow two-template gate retained all six matching candidates
   and intercepted five mismatches among the 11 runtime-clean candidates.
   It also deferred two valid SQL forms in a separate constructed test.
@@ -61,5 +67,10 @@ The 456 observations repeat 19 questions on one historical snapshot. The
 benchmark spot checks, archive replay and synthetic fixtures answer different
 questions. No new LLM calls, independent human sign-off, or production outcome
 measurement were performed in this package.
+
+The [configuration funnel](evidence/numeric_by_configuration.csv),
+[policy breakdown](evidence/repair_policy_by_case.csv) and
+[T4 amount audit](evidence/t4_amount_audit.csv) expose the denominators and
+enable independent review without rerunning archived SQL.
 
 [Data provenance and licensing](data/NOTICE.md)

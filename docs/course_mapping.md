@@ -5,7 +5,7 @@
 | Scope (10) | Report §1. Single-turn analyst triage on a versioned, approved financial snapshot. Limits and decision rights are explicit |
 | Architecture (15) | Report §§3–4 and appendix. Nine-node flow, repair branch and T4 end-to-end trace |
 | Failure propagation (15) | Report §4 and matrix A. Causes, propagation, severity and business impact for each node |
-| Offline evaluation (15) | Report §§2, 5–7 and matrix B. 19 cases, 456 archived runs, independent recomputation, benchmark audit, release metrics and blind-review plan |
+| Offline evaluation (15) | Report §§2, 5–7 and matrix B. 19 cases, 456 archived runs, separate outcome denominators, T4 scalar audit, reference sensitivity and blind-review plan |
 | Online guardrails (10) | Report §10 and matrix B. Preventive, detective and corrective controls, owners and limits |
 | Monitoring (10) | Report §11 and matrix C. Live operational telemetry and independent outcome review with triggers and responses |
 | Literature and standards (10) | Report §§2, 5, 7, 9–12 and references. Benchmark, testing, architecture, audit and governance compared |

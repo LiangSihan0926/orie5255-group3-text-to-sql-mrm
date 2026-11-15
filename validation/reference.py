@@ -102,12 +102,20 @@ def recompute(con):
     eligible=[l for l in loans if withdrawal[l[1]]]
     prague=[l for l in loans if residence(l)=='Prague']
     unemp=[district[account_district[l[1]]][1] for l in loans]
+    unemp_amount=sum(loan[2] for loan,rate in zip(loans,unemp) if rate is not None)
+    weighted_unemp=sum(loan[2]*rate for loan,rate in zip(loans,unemp) if rate is not None)
     vintage=grouped(loans,lambda l:l[3][:4])
     t8=[]
+    vintage_sensitivity=[]
     for year in ('1994','1997'):
         group=vintage[year]
         finished=[l for l in group if l[4] in FINISHED]
         t8.append((year,len(group),len(finished),ratio(finished,{'B'}),ratio(group)))
+        vintage_sensitivity.append(dict(year=year,originated_loans=len(group),finished_loans=len(finished),
+            finished_status_b=sum(loan[4]=='B' for loan in finished),
+            finished_share=len(finished)/len(group),finished_b_count_share=ratio(finished,{'B'}),
+            all_bd_count_share=ratio(group),
+            finished_b_approved_amount_share=ratio(finished,{'B'},weight=True)))
     bands=defaultdict(list)
     for l in loans:
         if l[4]=='D':
@@ -116,6 +124,7 @@ def recompute(con):
     total=sum(l[2] for l in eligible)
     high=sum(x[1] for x in latest_hi.values())
     low=sum(x[1] for x in latest_lo.values())
+    balance_changes=[abs(row[1]-latest_lo[account][1]) for account,row in latest_hi.items()]
     results={
         'E1': sorted(Counter(l[4] for l in loans).items()),
         'E2': [(sum(l[2] for l in vintage['1997']),)],
@@ -172,8 +181,18 @@ def recompute(con):
             'T4_transaction_fanout_total': sum(l[2]*withdrawal[l[1]] for l in eligible),
             'T4_transaction_join_rows': sum(withdrawal[l[1]] for l in eligible),
             'T6_snapshot_status_misused': sum(l[3]<='1996-12-31' and l[4] in ('C','D') for l in loans),
+            'T7_weight_sensitivity': {
+                'included_loans':len(unemp)-unemp.count(None),
+                'excluded_loans':unemp.count(None),
+                'approved_amount_denominator':unemp_amount,
+                'count_weighted_percent':results['T7'][0][0],
+                'amount_weighted_percent':weighted_unemp/unemp_amount,
+            },
+            'T8_vintage_sensitivity':vintage_sensitivity,
             'T9_alternative_tie_break': low,
             'T9_tie_break_absolute_difference': abs(high-low),
+            'T9_tie_break_changed_accounts':sum(change>0 for change in balance_changes),
+            'T9_tie_break_gross_absolute_change':sum(balance_changes),
             'Q132_all_authorized_links': {'rows':len(male_links),'average':mean(male_links)},
             'Q132_account_owners_only': {'rows':len(male_owners),'average':mean(male_owners)},
             'Q169_male_owner_growth': {
