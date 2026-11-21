@@ -1,0 +1,37 @@
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+  block/.style={draw=rhocolor!75,fill=rhocolor!8,rounded corners=2pt,
+    minimum height=.84cm,text width=3.25cm,align=center,inner sep=4pt,font=\footnotesize\sffamily},
+  flow/.style={-{Latex[length=2mm]},semithick,draw=rhocolor},
+  slow/.style={flow,dashed},
+  edgeword/.style={font=\scriptsize\sffamily,fill=white,inner sep=2pt,text=rhocolor},
+]
+\node[block] (n1) at (0,0) {\textbf{N1 Route}\\Request and role};
+\node[block] (n2) at (4.3,0) {\textbf{N2 Load context}\\Catalog / snapshot};
+\node[block] (n3) at (8.6,0) {\textbf{N3 Set metric}\\Approved definition};
+\node[block] (n4) at (8.6,-1.4) {\textbf{N4 Draft or repair}\\SQL candidate};
+\node[block] (n5) at (4.3,-1.4) {\textbf{N5 Check action}\\Parse action and SQL};
+\node[block] (n6) at (0,-1.4) {\textbf{N6 Authorize}\\Role / query / policy};
+\node[block] (n7) at (0,-2.8) {\textbf{N7 Execute}\\Bounded read};
+\node[block] (n8) at (4.3,-2.8) {\textbf{N8 Reconcile}\\Amount and grain};
+\node[block] (n9) at (8.6,-2.8) {\textbf{N9 Respond}\\Verified response};
+\draw[flow] (n1)--(n2); \draw[flow] (n2)--(n3);
+\draw[flow] (n3)--(n4); \draw[flow] (n4)--(n5);
+\draw[flow] (n5)--(n6); \draw[flow] (n6)--(n7);
+\draw[flow] (n7)--(n8); \draw[flow] (n8)--(n9);
+\draw[draw=rhocolor!35,dotted] (-1.85,.55) rectangle (10.45,-3.45);
+\node[block,fill=white,text width=11.7cm,align=left] (ctl) at (4.3,-5.2) {
+\textbf{Controller exception routing at every node}\\
+N1/N3 missing definition: N9 clarify. N2 unknown version: N9 hold.\\
+N1/N5/N6 prohibited action: N9 refuse. N6 unverified intent: N9 hold.\\
+N5/N7/N8 recoverable fault: retry N4 only if contract fixed and rewrites $<2$.\\
+Exhausted budget, other fault or failed N9 release check: N9 hold and stop.};
+\draw[slow] (4.3,-3.45)--node[right,edgeword]{Every node reports status}(ctl.north);
+\draw[slow] (ctl.east)--(11.2,-5.2)|-node[pos=.7,right,edgeword]{Eligible retry}(n4.east);
+\node[block,fill=white,dashed,text width=2.5cm] (stop) at (13.15,-2.8) {\textbf{N9 Stop}\\Clarify, refuse or hold};
+\draw[slow] (ctl.east)--(11.2,-5.2)-|node[pos=.65,below,edgeword]{All other faults}(stop.south);
+\end{tikzpicture}
+\caption{Proposed normal path and complete controller routing. A rewrite re-enters N5 and N6 before execution. A separately permitted component of a policy request requires its own authorized path. The pilot combines N1--N4 and does not implement all controls shown.}
+\label{fig:architecture}
+\end{figure}

@@ -1,0 +1,130 @@
+{
+  "source_db_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+  "source_control_sha256": "c2fb3ce80e6b00d2d10fcc018a1a95ae66f9e383a6da4b76dcff8d957f504a8b",
+  "source_snapshot": {
+    "loans": 682,
+    "distinct_loan_accounts": 682
+  },
+  "tables_reused": [
+    "district",
+    "account",
+    "loan",
+    "trans"
+  ],
+  "enforced_foreign_keys": true,
+  "schema_allows_multiple_loans_per_account": true,
+  "scenarios": [
+    {
+      "scenario": "empty_verified",
+      "coverage": "verified",
+      "expected_gated_value": 0,
+      "vetted_templates": {
+        "IN": null,
+        "EXISTS": null
+      },
+      "proposed_action": "return",
+      "proposed_value": 0,
+      "fault_examples": {
+        "direct_event_join": null,
+        "one_maximum_per_account": null,
+        "deduplicate_amount": null
+      }
+    },
+    {
+      "scenario": "empty_unverified",
+      "coverage": "unknown",
+      "expected_gated_value": null,
+      "vetted_templates": {
+        "IN": null,
+        "EXISTS": null
+      },
+      "proposed_action": "hold",
+      "proposed_value": null,
+      "fault_examples": {
+        "direct_event_join": null,
+        "one_maximum_per_account": null,
+        "deduplicate_amount": null
+      }
+    },
+    {
+      "scenario": "one_eligible",
+      "coverage": "verified",
+      "expected_gated_value": 100,
+      "vetted_templates": {
+        "IN": 100,
+        "EXISTS": 100
+      },
+      "proposed_action": "return",
+      "proposed_value": 100,
+      "fault_examples": {
+        "direct_event_join": 100,
+        "one_maximum_per_account": 100,
+        "deduplicate_amount": 100
+      }
+    },
+    {
+      "scenario": "one_eligible_incomplete",
+      "coverage": "incomplete",
+      "expected_gated_value": null,
+      "vetted_templates": {
+        "IN": 100,
+        "EXISTS": 100
+      },
+      "proposed_action": "hold",
+      "proposed_value": null,
+      "fault_examples": {
+        "direct_event_join": 100,
+        "one_maximum_per_account": 100,
+        "deduplicate_amount": 100
+      }
+    },
+    {
+      "scenario": "repeat_withdrawal",
+      "coverage": "verified",
+      "expected_gated_value": 100,
+      "vetted_templates": {
+        "IN": 100,
+        "EXISTS": 100
+      },
+      "proposed_action": "return",
+      "proposed_value": 100,
+      "fault_examples": {
+        "direct_event_join": 200,
+        "one_maximum_per_account": 100,
+        "deduplicate_amount": 100
+      }
+    },
+    {
+      "scenario": "two_loans_one_account",
+      "coverage": "verified",
+      "expected_gated_value": 160,
+      "vetted_templates": {
+        "IN": 160,
+        "EXISTS": 160
+      },
+      "proposed_action": "return",
+      "proposed_value": 160,
+      "fault_examples": {
+        "direct_event_join": 160,
+        "one_maximum_per_account": 100,
+        "deduplicate_amount": 160
+      }
+    },
+    {
+      "scenario": "distinct_equal_amounts",
+      "coverage": "verified",
+      "expected_gated_value": 200,
+      "vetted_templates": {
+        "IN": 200,
+        "EXISTS": 200
+      },
+      "proposed_action": "return",
+      "proposed_value": 200,
+      "fault_examples": {
+        "direct_event_join": 200,
+        "one_maximum_per_account": 200,
+        "deduplicate_amount": 100
+      }
+    }
+  ]
+}

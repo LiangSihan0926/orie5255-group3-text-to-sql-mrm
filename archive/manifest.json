@@ -1,0 +1,192 @@
+{
+  "original_archive_sha256": "98a944b3df1ae7a00976ddf63f2d2d3ba72c5c39b4cdbfc868595fd9cef1a2a5",
+  "files": [
+    {
+      "source": "Group 3 Capstone Proposal/Group_3_Topic_2_Proposal.docx",
+      "repository_path": "archive/proposals/Group_3_Topic_2_Proposal.docx",
+      "size": 42250,
+      "sha256": "1cfedf6466923539d893cac32f64d90780c330e64f62f7096b5036a84da64df3"
+    },
+    {
+      "source": "Group 3 Capstone Proposal/Group_3_Topic_2_Proposal_English.docx",
+      "repository_path": "archive/proposals/Group_3_Topic_2_Proposal_English.docx",
+      "size": 42103,
+      "sha256": "27a7b069a6056566e87d76a655df26e4adb447a1b86dee2f4b32dd4dc3a11ff3"
+    },
+    {
+      "source": "Cornell_AI_MRM_Capstone.docx",
+      "repository_path": "archive/assignment/Cornell_AI_MRM_Capstone.docx",
+      "size": 37796,
+      "sha256": "a5339de452e2f9b89e956cc7ca6ee754460f272fee9eb74b69e2588606062a99"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_summary_openai_gpt-4.1_repair2.csv",
+      "repository_path": "archive/text2sql_bird/llm_summary_openai_gpt-4.1_repair2.csv",
+      "size": 234,
+      "sha256": "4b7e3af6eb50f08522f9966c56b3abd3c3c0e1d1aabe7064644bdf53215416ae"
+    },
+    {
+      "source": "text2sql_bird/financial.sqlite",
+      "repository_path": "data/financial.sqlite.gz",
+      "size": 71294976,
+      "sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+      "hash_applies_to": "uncompressed bytes"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_summary_openai_gpt-4o-mini_repair2.csv",
+      "repository_path": "archive/text2sql_bird/llm_summary_openai_gpt-4o-mini_repair2.csv",
+      "size": 232,
+      "sha256": "ced6d08434a28f705ce18f4f8a7ca61d0fe12d89a1f092eab0462150f1c9cee3"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/failure_catalog.csv",
+      "repository_path": "archive/text2sql_bird/failure_catalog.csv",
+      "size": 2683,
+      "sha256": "8f78767f6eca778bc56dc582798f93a4499faa5a75275b180366e63277fecebb"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/test_suite_results.csv",
+      "repository_path": "archive/text2sql_bird/test_suite_results.csv",
+      "size": 3528,
+      "sha256": "ccd66976b781930fa9d605865c392d6d26b038feff47a754291f9928d45356cc"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/analyze_llm_results.py",
+      "repository_path": "archive/text2sql_bird/analyze_llm_results.py",
+      "size": 17441,
+      "sha256": "1a6258bdb99781e8aa4baf38436450a93b3e6c82dfe6ccb6e31f2c2f9ff58cfb"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_runs_openai_gpt-4o-mini.csv",
+      "repository_path": "archive/text2sql_bird/llm_runs_openai_gpt-4o-mini.csv",
+      "size": 40511,
+      "sha256": "19e33700b02e7c4a6bb54a680a6edc8bf4b1dace4e61571273bfb71eed499f03"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_runs_openai_gpt-4.1.csv",
+      "repository_path": "archive/text2sql_bird/llm_runs_openai_gpt-4.1.csv",
+      "size": 63276,
+      "sha256": "49cab7e3701b4ada1cee06c42901b35b3ab6652a83b1d924333427678d9769ba"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/README.md",
+      "repository_path": "archive/text2sql_bird/README.md",
+      "size": 7118,
+      "sha256": "7af726938067f241a4923e46f9a38baecc0fa2e3f9c94efaaeaad9d791137510"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/run_llm_agent.py",
+      "repository_path": "archive/text2sql_bird/run_llm_agent.py",
+      "size": 18004,
+      "sha256": "d9a2b937c20799aa8ee43d3ae89edc7ff50fde5c86006daeb39007afa8661e6f"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/RESULTS.md",
+      "repository_path": "archive/text2sql_bird/RESULTS.md",
+      "size": 10696,
+      "sha256": "e04d38c85ec95d7dadd72cdaba683fca111a06550661e38f8c5222e4444e74de"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_runs_openai_gpt-4o-mini_repair2.csv",
+      "repository_path": "archive/text2sql_bird/llm_runs_openai_gpt-4o-mini_repair2.csv",
+      "size": 40608,
+      "sha256": "20315230662e183a8864b8b8c0beafa9ebb4588fce6f62d96f519e7b841951bb"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/test_suite.py",
+      "repository_path": "archive/text2sql_bird/test_suite.py",
+      "size": 16771,
+      "sha256": "f9c81fa8be769db7d36e118292864e0947c91bfcdfd3ef6edc149b44e11014f8"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_runs_openai_gpt-4.1_repair2.csv",
+      "repository_path": "archive/text2sql_bird/llm_runs_openai_gpt-4.1_repair2.csv",
+      "size": 73180,
+      "sha256": "52df218ae5225dfb74de8772e48eafc4fb1d2ac3f093a4401c6bd54e6c3a6794"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_summary_openai_gpt-4o-mini.csv",
+      "repository_path": "archive/text2sql_bird/llm_summary_openai_gpt-4o-mini.csv",
+      "size": 229,
+      "sha256": "acb2b905bd2e781bef9c5f99661c6ad720869b9bd67ee92834ad0819e9b29f49"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/llm_summary_openai_gpt-4.1.csv",
+      "repository_path": "archive/text2sql_bird/llm_summary_openai_gpt-4.1.csv",
+      "size": 233,
+      "sha256": "3d0a857eebe1d6f59942c17065b8438912a67d2b1fff14ac084fcef318d2805e"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/metric_dictionary.yaml",
+      "repository_path": "archive/text2sql_bird/metric_dictionary.yaml",
+      "size": 4061,
+      "sha256": "fbb7ff6e11c0643b8e3249ed44d78a163144051b5472f5d48100adb34e327693"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/results_adjudicated.csv",
+      "repository_path": "archive/text2sql_bird/results_adjudicated.csv",
+      "size": 251405,
+      "sha256": "95b881f0c9ee0b9f24becc26f6b0ec19a8189d7739ba25d6c7739c153b868bf5"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/bird_financial_dev.json",
+      "repository_path": "archive/text2sql_bird/bird_financial_dev.json",
+      "size": 50340,
+      "sha256": "edce65591214820b0c858c9f0d7b453eb5d405a3a7c65d37156fafb5cd09d15c"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/run_test_suite.py",
+      "repository_path": "archive/text2sql_bird/run_test_suite.py",
+      "size": 4803,
+      "sha256": "e22a562759168a14c40892e2487b6036927199a70178eb9e010a744888962f50"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/loan.csv",
+      "repository_path": "archive/text2sql_bird/database_description/loan.csv",
+      "size": 630,
+      "sha256": "e6f4c7393d3973c9647913206ec4da2b9480bca4a8fb1ed45f4d42c433112756"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/client.csv",
+      "repository_path": "archive/text2sql_bird/database_description/client.csv",
+      "size": 252,
+      "sha256": "d1ef6f74b4730737517307c2f3b219496af264d83fe3e34f435c078b368dd800"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/district.csv",
+      "repository_path": "archive/text2sql_bird/database_description/district.csv",
+      "size": 1095,
+      "sha256": "6da804294fe9e7f9f8285759b842e39e0c5c8cb10390a93d5e292c2cb28fdc48"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/trans.csv",
+      "repository_path": "archive/text2sql_bird/database_description/trans.csv",
+      "size": 1155,
+      "sha256": "59efafabbb4347853f29ebfc14fdd18633f724a669e7e26cb7b2ecd628d6c4a2"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/account.csv",
+      "repository_path": "archive/text2sql_bird/database_description/account.csv",
+      "size": 480,
+      "sha256": "98f9b72619c30593fadc013efc668d081193f34f2bda1353214c48c8013f03b3"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/card.csv",
+      "repository_path": "archive/text2sql_bird/database_description/card.csv",
+      "size": 415,
+      "sha256": "1dd79bf48c7696a5e6c3fc4835c9994b129f58307ad75c2f874f9cd1078fe300"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/order.csv",
+      "repository_path": "archive/text2sql_bird/database_description/order.csv",
+      "size": 602,
+      "sha256": "d01db89f3121b96a8c5876108d835ad0ab8d8bd5e132d9d823d384ae12706476"
+    },
+    {
+      "source": "text2sql_bird.zip:text2sql_bird/database_description/disp.csv",
+      "repository_path": "archive/text2sql_bird/database_description/disp.csv",
+      "size": 423,
+      "sha256": "3b7ade14650a78e7122fdf4f423c4dae241e923d73039c65e5e85b7ac7919ffe"
+    }
+  ]
+}

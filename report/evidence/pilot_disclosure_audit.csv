@@ -1,0 +1,19 @@
+cohort,case,measure,records_meeting_measure,records_in_cohort,reference_values
+runtime-clean key match,all,no archived caveat keyword in saved assumptions,17,143,
+runtime-clean key match,all with keyword rule,no archived caveat keyword in saved assumptions,17,46,
+runtime-clean key match,E2,no archived caveat keyword in saved assumptions,2,13,
+runtime-clean key match,T7,no archived caveat keyword in saved assumptions,3,3,
+runtime-clean key match,T8,no archived caveat keyword in saved assumptions,0,6,
+runtime-clean key match,T9,no archived caveat keyword in saved assumptions,0,0,
+runtime-clean key match,T10,no archived caveat keyword in saved assumptions,12,24,
+runtime-clean key match,E3,saved result contains only the matching scalar,23,23,supporting loan count 145
+runtime-clean key match,T3,saved result contains only the matching scalar,12,12,supporting loan count 348
+runtime-clean key match,T4,saved result contains only the matching scalar,12,12,supporting loan count 148
+runtime-clean key match,T8,both years paired with origination counts,3,6,1994=101 / 1997=196
+runtime-clean key match,T8,both years paired with finished-loan counts,6,6,1994=85 / 1997=43
+runtime-clean key match,T8,both years paired with B share among finished loans,6,6,1994=0.1412 / 1997=0.0698
+runtime-clean key match,T8,both years paired with B/D share among all originations,0,6,1994=0.1386 / 1997=0.1327
+partial action with saved result,T8,both years paired with origination counts,3,6,1994=101 / 1997=196
+partial action with saved result,T8,both years paired with finished-loan counts,0,6,1994=85 / 1997=43
+partial action with saved result,T8,both years paired with B share among finished loans,0,6,1994=0.1412 / 1997=0.0698
+partial action with saved result,T8,both years paired with B/D share among all originations,6,6,1994=0.1386 / 1997=0.1327

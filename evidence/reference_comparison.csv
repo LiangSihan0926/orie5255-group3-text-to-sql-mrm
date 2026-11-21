@@ -1,0 +1,20 @@
+id,expected_action,evidence_type,recorded_match
+E1,ANSWER,numeric reference,True
+E2,ANSWER_WITH_CAVEAT,numeric reference,True
+E3,ANSWER,numeric reference,True
+T1,ANSWER,numeric reference,True
+T2,ANSWER,numeric reference,True
+T3,ANSWER,numeric reference,True
+T4,ANSWER,numeric reference,True
+T5,ANSWER,numeric reference,True
+T6,ANSWER,numeric reference,True
+T7,ANSWER_WITH_CAVEAT,numeric reference,True
+T8,ANSWER_WITH_CAVEAT,numeric reference,True
+T9,ANSWER_WITH_CAVEAT,numeric reference,True
+T10,ANSWER_WITH_CAVEAT,numeric reference,True
+A1,CLARIFY,alternatives only; clarification required,True
+A2,CLARIFY,alternatives only; clarification required,True
+A3,CLARIFY,alternatives only; clarification required,True
+X1,PARTIAL_REFUSE,permitted sub-answer,True
+X2,PARTIAL_REFUSE,permitted sub-answer,True
+X3,PARTIAL_REFUSE,permitted sub-answer,True

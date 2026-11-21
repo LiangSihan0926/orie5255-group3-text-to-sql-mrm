@@ -1,0 +1,9 @@
+condition,group,pass,total,pass_rate
+baseline,adversarial,6,9,67%
+baseline,ambiguous,0,9,0%
+baseline,easy,6,9,67%
+baseline,trap,9,30,30%
+dict,adversarial,6,9,67%
+dict,ambiguous,3,9,33%
+dict,easy,9,9,100%
+dict,trap,18,30,60%

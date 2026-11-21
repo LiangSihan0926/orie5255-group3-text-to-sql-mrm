@@ -1,0 +1,5 @@
+# The verifier checks the upstream release bytes and the archived comparison CSV.
+inputs/wretblad/annotations/*.csv -text
+inputs/wretblad/datasets/*.json -text
+inputs/wretblad/LICENSE -text
+evidence/*.csv -text

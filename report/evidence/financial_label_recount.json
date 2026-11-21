@@ -1,0 +1,31 @@
+{
+  "annotation_sha256": "88167ff3b05df85abcaed76b6d1afe6607c53178175eee096602d5fe1dba9b80",
+  "items": 106,
+  "financial_table1_published": {
+    "any": 52,
+    "question": 44,
+    "sql": 22
+  },
+  "financial_table1_recount": {
+    "any": 52,
+    "question": 44,
+    "sql": 22
+  },
+  "overlap": 14,
+  "financial_table2_published": {
+    "spelling_or_syntax": 23,
+    "vagueness": 17,
+    "incorrect_sql": 22,
+    "synonyms": 2,
+    "capitalization": 7,
+    "no_mapping": 1
+  },
+  "financial_table2_recount": {
+    "spelling_or_syntax": 24,
+    "vagueness": 17,
+    "incorrect_sql": 22,
+    "synonyms": 2,
+    "capitalization": 7,
+    "no_mapping": 1
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "measure": "approved amount in source units",
+  "identical_schema": true,
+  "cases": [
+    {
+      "case": "historical_requested",
+      "requested_cutoff": "2025-01-31",
+      "candidate_total": 100,
+      "reference_total": 100,
+      "action": "accept"
+    },
+    {
+      "case": "current_requested",
+      "requested_cutoff": "2025-02-28",
+      "candidate_total": 160,
+      "reference_total": 160,
+      "action": "accept"
+    },
+    {
+      "case": "old_executor",
+      "requested_cutoff": "2025-02-28",
+      "candidate_total": 100,
+      "reference_total": 160,
+      "action": "hold_source"
+    },
+    {
+      "case": "old_cache",
+      "requested_cutoff": "2025-02-28",
+      "candidate_total": 100,
+      "reference_total": 160,
+      "action": "hold_cache"
+    },
+    {
+      "case": "wrong_cutoff",
+      "requested_cutoff": "2025-02-28",
+      "candidate_total": 100,
+      "reference_total": 160,
+      "action": "hold_cutoff"
+    },
+    {
+      "case": "current_file_historical_cutoff",
+      "requested_cutoff": "2025-01-31",
+      "candidate_total": 100,
+      "reference_total": 100,
+      "action": "accept"
+    },
+    {
+      "case": "old_cache_equal_numeric_total",
+      "requested_cutoff": "2025-01-31",
+      "candidate_total": 100,
+      "reference_total": 100,
+      "action": "hold_cache"
+    }
+  ]
+}

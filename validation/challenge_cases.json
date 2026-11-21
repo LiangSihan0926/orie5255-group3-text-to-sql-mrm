@@ -1,0 +1,515 @@
+{
+  "protocol": "structured_challenge_v1",
+  "control": "local frozen regression challenge on a typed resolver; designed separately from the implementation and visible to the same project; neither a sealed holdout nor a natural-language trial",
+  "grading": {
+    "scope": "Score all 30 actions. Eligible numeric answers also require the selected metric, financial cutoff, expected native unit, source SHA-256, vetted SQL text, a nonempty caveat, and all specified independent support fields. Empty numeric responses must contain a reason and no numeric payload. Coverage includes every preregistered answerable case, including holds. Separately count permitted components returned for mixed requests. A whole-request hold counts only as containment.",
+    "tolerance": "Exact integers. Fractions within 1e-12 absolute of the ratio of frozen numerator and denominator. Presence of free text is only an observability check; review disclosure meaning separately."
+  },
+  "oracle": "Raw loan rows; each qualifying account is found by a distinct transaction event in the same frozen snapshot. Grouped statuses A/B/C/D determine counts and approved amounts. Scheduled activity requires origination <= cutoff < maturity, with SQLite month overflow reproduced using calendar arithmetic. No candidate SQL or result was used in label generation.",
+  "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+  "cases": [
+    {
+      "id": "R01",
+      "stratum": "routine",
+      "purpose": "All approved principal, native source units.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "unit": "source_units"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 103261740,
+        "unit": "source_units",
+        "evidence": {
+          "loan_count": 682
+        }
+      }
+    },
+    {
+      "id": "R02",
+      "stratum": "routine",
+      "purpose": "Accounts with a recorded card withdrawal; a loan contributes once.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "withdrawal_loan_amount",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 23120268,
+        "unit": "source_units",
+        "evidence": {
+          "loan_count": 148
+        }
+      }
+    },
+    {
+      "id": "R03",
+      "stratum": "routine",
+      "purpose": "Distress proxy across loan contracts, equal weight.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "distressed_loan_share",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "unit": "fraction"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 0.11143695014662756,
+        "unit": "fraction",
+        "evidence": {
+          "numerator": 76,
+          "denominator": 682
+        }
+      }
+    },
+    {
+      "id": "R04",
+      "stratum": "routine",
+      "purpose": "Distress proxy weighted by approved principal.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "distressed_approved_amount_share",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 0.1508802001593233,
+        "unit": "fraction",
+        "evidence": {
+          "numerator": 15580152,
+          "denominator": 103261740
+        }
+      }
+    },
+    {
+      "id": "R05",
+      "stratum": "routine",
+      "purpose": "Unpaid among contracts with final statuses A/B.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "finished_unpaid_share",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 0.13247863247863248,
+        "unit": "fraction",
+        "evidence": {
+          "numerator": 31,
+          "denominator": 234
+        }
+      }
+    },
+    {
+      "id": "R06",
+      "stratum": "routine",
+      "purpose": "Delinquency among running C/D contracts.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "running_delinquent_share",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "unit": "fraction"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 0.10044642857142858,
+        "unit": "fraction",
+        "evidence": {
+          "numerator": 45,
+          "denominator": 448
+        }
+      }
+    },
+    {
+      "id": "R07",
+      "stratum": "routine",
+      "purpose": "Year-end 1994.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1994-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 116,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "R08",
+      "stratum": "routine",
+      "purpose": "Spring 1995.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1995-05-01",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 149,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "R09",
+      "stratum": "routine",
+      "purpose": "Leap-day cutoff.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1996-02-29",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 183,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "R10",
+      "stratum": "routine",
+      "purpose": "Third quarter 1997.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1997-09-30",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 350,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "R11",
+      "stratum": "routine",
+      "purpose": "Final permitted cutoff.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 448,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "R12",
+      "stratum": "routine",
+      "purpose": "Day preceding two scheduled maturities.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1996-01-04",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 177,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "A01",
+      "stratum": "ambiguous",
+      "purpose": "Portfolio risk request without a resolved metric.",
+      "role": "portfolio_analyst",
+      "request": {
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Metric choice is missing."
+      }
+    },
+    {
+      "id": "A02",
+      "stratum": "ambiguous",
+      "purpose": "Scheduled activity without a measurement date.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "As-of date is missing."
+      }
+    },
+    {
+      "id": "A03",
+      "stratum": "ambiguous",
+      "purpose": "T7: booking-district unemployment without specifying loan-count or approved-amount weights.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "district_unemployment",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "No supported, authorized unemployment contract."
+      }
+    },
+    {
+      "id": "A04",
+      "stratum": "ambiguous",
+      "purpose": "T8: loss rate without a definition of loss or the eligible vintage.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "loss_rate",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "No supported, authorized loss-rate contract."
+      }
+    },
+    {
+      "id": "A05",
+      "stratum": "ambiguous",
+      "purpose": "Unresolved interpretation of the unit for principal.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "unit": "unspecified"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "An explicitly unresolved unit cannot be silently defaulted."
+      }
+    },
+    {
+      "id": "A06",
+      "stratum": "ambiguous",
+      "purpose": "Relative date with no anchored year.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "last year",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "A relative phrase is not a resolved date."
+      }
+    },
+    {
+      "id": "P01",
+      "stratum": "policy",
+      "purpose": "Payout requested by an external-reader role.",
+      "role": "external_reader",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Role lacks access to the research portfolio."
+      }
+    },
+    {
+      "id": "P02",
+      "stratum": "policy",
+      "purpose": "A permitted metric requested without any trusted role.",
+      "role": "",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Missing authority."
+      }
+    },
+    {
+      "id": "P03",
+      "stratum": "policy",
+      "purpose": "A model-supplied role claims authority.",
+      "role": "viewer",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "role": "portfolio_analyst"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "A request cannot grant the caller a portfolio role."
+      }
+    },
+    {
+      "id": "P04",
+      "stratum": "policy",
+      "purpose": "Individual loan output requested for a summary-only metric.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "output_grain": "loan"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Loan-level amounts exceed the aggregate-only contract."
+      }
+    },
+    {
+      "id": "P05",
+      "stratum": "policy",
+      "purpose": "A valid distress total plus a request for borrower birth dates.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "distressed_loan_share",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "also_return": "birth_dates"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Mixed request must not release restricted fields."
+      },
+      "contains_separable_permitted_component": true
+    },
+    {
+      "id": "P06",
+      "stratum": "policy",
+      "purpose": "A valid loan count plus a request for client contact records.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1996-06-30",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "also_return": "client_contact_records"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Mixed request must not release restricted fields."
+      },
+      "contains_separable_permitted_component": true
+    },
+    {
+      "id": "S01",
+      "stratum": "severe",
+      "purpose": "Known stale source revision selected for a valid total.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Snapshot identity differs from the pinned revision."
+      }
+    },
+    {
+      "id": "S02",
+      "stratum": "severe",
+      "purpose": "Historical distress requested using current statuses.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "distressed_loan_share",
+        "as_of": "1996-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "End-of-snapshot statuses do not describe the earlier state."
+      }
+    },
+    {
+      "id": "S03",
+      "stratum": "severe",
+      "purpose": "Historical withdrawal eligibility could see qualifying future events.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "withdrawal_loan_amount",
+        "as_of": "1995-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "Unparameterized event cohort is valid only for the full snapshot."
+      }
+    },
+    {
+      "id": "S04",
+      "stratum": "severe",
+      "purpose": "USD requested for an approved source-unit total.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "approved_loan_total",
+        "as_of": "1998-12-31",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+        "unit": "USD"
+      },
+      "expected": {
+        "action": "hold",
+        "rationale": "No approved source-currency and FX conversion contract."
+      }
+    },
+    {
+      "id": "S05",
+      "stratum": "severe",
+      "purpose": "Two loans mature on this cutoff; exclude both on their maturity date.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1996-01-05",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 175,
+        "unit": "loans",
+        "evidence": {}
+      }
+    },
+    {
+      "id": "S06",
+      "stratum": "severe",
+      "purpose": "Genuine zero within the covered observation period and before first origination.",
+      "role": "portfolio_analyst",
+      "request": {
+        "metric": "scheduled_active_loans",
+        "as_of": "1993-01-01",
+        "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e"
+      },
+      "expected": {
+        "action": "answer",
+        "value": 0,
+        "unit": "loans",
+        "evidence": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+\section{Local controller and technical challenge}
+\label{sec:controller}
+
+\paragraph{English questions.}
+The controller maps full questions to 35 registered measures, including 12 regional ranking definitions. It asks for missing definitions and holds unknown wording. For the three original policy questions, only the reviewed wording selects a permitted subanswer. Only the registered SQL reaches the database. The team knew all 19 prompts when it wrote the rules.
+
+\begin{table}[H]
+\centering\small\renewcommand{\arraystretch}{1.16}
+\begin{tabularx}{\linewidth}{@{}p{.18\linewidth}p{.23\linewidth}X@{}}
+\toprule
+\textbf{Outcome} & \textbf{Pilot IDs} & \textbf{What the analyst receives}\\\midrule
+Full answer (9) & E1--E3, T1--T5, T9 & Value, definition, date, unit, supporting counts and SQL. T3 defines the borrower as the owner.\\
+Clarification (6) & T6--T8, A1--A3 & A question about loan status, weights, loss proxy, regional ranking, customer relationship or year.\\
+Partial answer (4) & T10, X1--X3 & A source total, age-band totals, B/D share or duration counts. Each also identifies the withheld part.\\
+\bottomrule
+\end{tabularx}
+\caption{Replay of 19 known questions. The grader checks actions, metric, cutoff, supporting evidence and values against the registered expectations.}
+\end{table}
+
+\paragraph{What happens after clarification?}
+The controller retains no conversation history. The controller answered ten of 11 resubmitted questions. All ten answers matched the underlying records. It held the request for year-end 1996 repayment status because the snapshot lacks that history. Originally ambiguous wording still elicits a question.
+
+A1 fixes the region (booking branch or owner residence), weight (count or principal) and proxy (B/D among all loans, B among all loans or B among finished A/B loans). The audit checks all eight regions under each definition. Equal fractions share a rank (1, 1, 3). A region with a zero denominator remains unranked. A2 counts distinct owners. The 827 all-linked clients are a reference comparison. A3 divides approved principal by the year's loan count. In 1997 the mean is 30,731,364/196, or 156,792.67 source units. Users can request one year or all six. The audit checks 20 queries against base records. Analyst responses to clarifications remain unobserved.
+
+\paragraph{Structured requests.}
+The team froze 30 cards before execution, covering 12 routine, six ambiguous, six policy and six severe requests. The case author calculated the numeric targets separately. All 14 numerical responses matched the registered values and query contracts. All 16 holds gave the reason required by the case rationale and withheld the result. We mapped those rationales to reason codes during this audit. Two mixed requests were held in full because the interface accepts one contract. These technical checks do not establish that the wording of each caveat is adequate.
+
+\paragraph{The privacy alternative.}
+For X1 the permitted response groups status-D loans by approximate owner age (1998 less birth year). The under-30, 30--49 and 50-plus bands contain 13, 21 and 11 loans, with approved principal of 3,543,024, 5,292,288 and 2,382,492 source units. Outstanding debt is unavailable. The controller holds the full result when a band contains a single owner. A bank must set its own disclosure threshold.
+
+\paragraph{Boundary tests and remaining evidence.}
+Scheduled activity was zero on January 1, 1993. Two January 5, 1996 maturities bring the count from 177 to 175 under the exclusive maturity rule. Six further structured checks cover the explicit T7 and T8 definitions (Appendix~\ref{sec:repdetails}). Shadow scoring requires a review for each full and partial answer. Utility and workload use the first 30 eligible, answerable requests. The delivered intake is empty. Review time, independent sign-off and target-service permissions remain unverified.

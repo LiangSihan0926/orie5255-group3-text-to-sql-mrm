@@ -1,0 +1,1453 @@
+{
+  "protocol": "structured_challenge_v1",
+  "post_freeze_review": "Receipt identity and hold-reason mapping were added after review of known cards.",
+  "scoring_files_sha256": {
+    "challenge_runner.py": "5943ea2748a7f7478f9d11f15144091037343cf068ee5db1ee32eb05f43b94a0",
+    "shadow_score.py": "0a09cd6a0261316fd9044525698aee93c550d65358813c891642f5acb5688688"
+  },
+  "case_file_sha256": "640025a69fec8c6d0a1831398cdf7069f41685a84c39f275708b23d26afb8b3f",
+  "runtime_file_sha256": "e11ac122481710bb300b3c98b35da81bbc702bc38e29d40bb0e9eda208635a53",
+  "implementation_files_sha256": {
+    "validation/shadow.py": "e11ac122481710bb300b3c98b35da81bbc702bc38e29d40bb0e9eda208635a53",
+    "validation/reference.py": "c0867f86d6efccabff882a2b0310b04f40f8d540b5d45557d7736cd6d176415d",
+    "validation/cohorts.py": "df9db08ad5a6a43498bcafa047596671a76ff3d5908d1d8f7827531502d181f1",
+    "validation/routine.py": "ecfead1ae1d134b6bb16851037ce6386135b485b99f7c7a358dcb094a0d4f7b9",
+    "validation/regional.py": "f01e80acb2ce2f1c012e59d99799c6544c2c870b49bee2917edae70f6f05cfa9",
+    "validation/owner_year.py": "443ac13bbfac93d6977b33d904d134592a30c503e11d0c04e0829bca523e11f3"
+  },
+  "summary": {
+    "cases": 30,
+    "frozen_card_checks_passed": 30,
+    "post_freeze_checks_passed": 30,
+    "complete_technical_checks_passed": 30,
+    "answerable": 14,
+    "correct_answers_with_required_output_fields": 14,
+    "expected_holds": 16,
+    "holds_with_reason_and_no_answer_payload": 16,
+    "holds_matching_the_recorded_rationale": 16,
+    "would_be_answers": 14,
+    "would_be_full_answers": 14,
+    "would_be_partial_answers": 0,
+    "would_be_answers_failing_a_registered_check": 0,
+    "would_be_answers_failing_a_post_freeze_check": 0,
+    "mixed_cases": 2,
+    "mixed_requests_held_in_full": 2,
+    "mixed_requests_returning_a_separate_numeric_component": 0
+  },
+  "strata": {
+    "routine": {
+      "cases": 12,
+      "frozen_card_checks_passed": 12,
+      "post_freeze_checks_passed": 12,
+      "complete_technical_checks_passed": 12,
+      "answerable": 12,
+      "correct_answers_with_required_output_fields": 12,
+      "expected_holds": 0,
+      "holds_with_reason_and_no_answer_payload": 0,
+      "holds_matching_the_recorded_rationale": 0,
+      "would_be_answers": 12,
+      "would_be_full_answers": 12,
+      "would_be_partial_answers": 0,
+      "would_be_answers_failing_a_registered_check": 0,
+      "would_be_answers_failing_a_post_freeze_check": 0,
+      "mixed_cases": 0,
+      "mixed_requests_held_in_full": 0,
+      "mixed_requests_returning_a_separate_numeric_component": 0
+    },
+    "ambiguous": {
+      "cases": 6,
+      "frozen_card_checks_passed": 6,
+      "post_freeze_checks_passed": 6,
+      "complete_technical_checks_passed": 6,
+      "answerable": 0,
+      "correct_answers_with_required_output_fields": 0,
+      "expected_holds": 6,
+      "holds_with_reason_and_no_answer_payload": 6,
+      "holds_matching_the_recorded_rationale": 6,
+      "would_be_answers": 0,
+      "would_be_full_answers": 0,
+      "would_be_partial_answers": 0,
+      "would_be_answers_failing_a_registered_check": 0,
+      "would_be_answers_failing_a_post_freeze_check": 0,
+      "mixed_cases": 0,
+      "mixed_requests_held_in_full": 0,
+      "mixed_requests_returning_a_separate_numeric_component": 0
+    },
+    "policy": {
+      "cases": 6,
+      "frozen_card_checks_passed": 6,
+      "post_freeze_checks_passed": 6,
+      "complete_technical_checks_passed": 6,
+      "answerable": 0,
+      "correct_answers_with_required_output_fields": 0,
+      "expected_holds": 6,
+      "holds_with_reason_and_no_answer_payload": 6,
+      "holds_matching_the_recorded_rationale": 6,
+      "would_be_answers": 0,
+      "would_be_full_answers": 0,
+      "would_be_partial_answers": 0,
+      "would_be_answers_failing_a_registered_check": 0,
+      "would_be_answers_failing_a_post_freeze_check": 0,
+      "mixed_cases": 2,
+      "mixed_requests_held_in_full": 2,
+      "mixed_requests_returning_a_separate_numeric_component": 0
+    },
+    "severe": {
+      "cases": 6,
+      "frozen_card_checks_passed": 6,
+      "post_freeze_checks_passed": 6,
+      "complete_technical_checks_passed": 6,
+      "answerable": 2,
+      "correct_answers_with_required_output_fields": 2,
+      "expected_holds": 4,
+      "holds_with_reason_and_no_answer_payload": 4,
+      "holds_matching_the_recorded_rationale": 4,
+      "would_be_answers": 2,
+      "would_be_full_answers": 2,
+      "would_be_partial_answers": 0,
+      "would_be_answers_failing_a_registered_check": 0,
+      "would_be_answers_failing_a_post_freeze_check": 0,
+      "mixed_cases": 0,
+      "mixed_requests_held_in_full": 0,
+      "mixed_requests_returning_a_separate_numeric_component": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "R01",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 103261740,
+      "observed_value": 103261740,
+      "expected_unit": "source_units",
+      "observed_unit": "source_units",
+      "expected_support": {
+        "loan_count": 682
+      },
+      "observed_support": {
+        "loan_count": 682
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R02",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "withdrawal_loan_amount",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 23120268,
+      "observed_value": 23120268,
+      "expected_unit": "source_units",
+      "observed_unit": "source_units",
+      "expected_support": {
+        "loan_count": 148
+      },
+      "observed_support": {
+        "loan_count": 148
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R03",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "distressed_loan_share",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 0.11143695014662756,
+      "observed_value": 0.11143695014662756,
+      "expected_unit": "fraction",
+      "observed_unit": "fraction",
+      "expected_support": {
+        "numerator": 76,
+        "denominator": 682
+      },
+      "observed_support": {
+        "numerator": 76,
+        "denominator": 682
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R04",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "distressed_approved_amount_share",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 0.1508802001593233,
+      "observed_value": 0.1508802001593233,
+      "expected_unit": "fraction",
+      "observed_unit": "fraction",
+      "expected_support": {
+        "numerator": 15580152,
+        "denominator": 103261740
+      },
+      "observed_support": {
+        "numerator": 15580152,
+        "denominator": 103261740
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R05",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "finished_unpaid_share",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 0.13247863247863248,
+      "observed_value": 0.13247863247863248,
+      "expected_unit": "fraction",
+      "observed_unit": "fraction",
+      "expected_support": {
+        "numerator": 31,
+        "denominator": 234
+      },
+      "observed_support": {
+        "numerator": 31,
+        "denominator": 234
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R06",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "running_delinquent_share",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 0.10044642857142858,
+      "observed_value": 0.10044642857142858,
+      "expected_unit": "fraction",
+      "observed_unit": "fraction",
+      "expected_support": {
+        "numerator": 45,
+        "denominator": 448
+      },
+      "observed_support": {
+        "numerator": 45,
+        "denominator": 448
+      },
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R07",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1994-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 116,
+      "observed_value": 116,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R08",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1995-05-01",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 149,
+      "observed_value": 149,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R09",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1996-02-29",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 183,
+      "observed_value": 183,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R10",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1997-09-30",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 350,
+      "observed_value": 350,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R11",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 448,
+      "observed_value": 448,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "R12",
+      "stratum": "routine",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1996-01-04",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 177,
+      "observed_value": 177,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A01",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": null,
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "missing_contract",
+      "expected_hold_reason": "missing_contract",
+      "frozen_rationale": "Metric choice is missing.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A02",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": "scheduled_active_loans",
+      "cutoff": null,
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "missing_contract",
+      "expected_hold_reason": "missing_contract",
+      "frozen_rationale": "As-of date is missing.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A03",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": "district_unemployment",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unknown_metric",
+      "expected_hold_reason": "unknown_metric",
+      "frozen_rationale": "No supported, authorized unemployment contract.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A04",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": "loss_rate",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unknown_metric",
+      "expected_hold_reason": "unknown_metric",
+      "frozen_rationale": "No supported, authorized loss-rate contract.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A05",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unsupported_unit",
+      "expected_hold_reason": "unsupported_unit",
+      "frozen_rationale": "An explicitly unresolved unit cannot be silently defaulted.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "A06",
+      "stratum": "ambiguous",
+      "expected_action": "hold",
+      "metric": "scheduled_active_loans",
+      "cutoff": "last year",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "invalid_cutoff",
+      "expected_hold_reason": "invalid_cutoff",
+      "frozen_rationale": "A relative phrase is not a resolved date.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "P01",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unauthorized_role",
+      "expected_hold_reason": "unauthorized_role",
+      "frozen_rationale": "Role lacks access to the research portfolio.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "P02",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unauthorized_role",
+      "expected_hold_reason": "unauthorized_role",
+      "frozen_rationale": "Missing authority.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "P03",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unauthorized_role",
+      "expected_hold_reason": "unauthorized_role",
+      "frozen_rationale": "A request cannot grant the caller a portfolio role.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "P04",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unsupported_request",
+      "expected_hold_reason": "unsupported_request",
+      "frozen_rationale": "Loan-level amounts exceed the aggregate-only contract.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "P05",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "distressed_loan_share",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unsupported_request",
+      "expected_hold_reason": "unsupported_request",
+      "frozen_rationale": "Mixed request must not release restricted fields.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": true
+    },
+    {
+      "id": "P06",
+      "stratum": "policy",
+      "expected_action": "hold",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1996-06-30",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unsupported_request",
+      "expected_hold_reason": "unsupported_request",
+      "frozen_rationale": "Mixed request must not release restricted fields.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": true
+    },
+    {
+      "id": "S01",
+      "stratum": "severe",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "snapshot_mismatch",
+      "expected_hold_reason": "snapshot_mismatch",
+      "frozen_rationale": "Snapshot identity differs from the pinned revision.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "S02",
+      "stratum": "severe",
+      "expected_action": "hold",
+      "metric": "distressed_loan_share",
+      "cutoff": "1996-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "snapshot_only",
+      "expected_hold_reason": "snapshot_only",
+      "frozen_rationale": "End-of-snapshot statuses do not describe the earlier state.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "S03",
+      "stratum": "severe",
+      "expected_action": "hold",
+      "metric": "withdrawal_loan_amount",
+      "cutoff": "1995-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "snapshot_only",
+      "expected_hold_reason": "snapshot_only",
+      "frozen_rationale": "Unparameterized event cohort is valid only for the full snapshot.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "S04",
+      "stratum": "severe",
+      "expected_action": "hold",
+      "metric": "approved_loan_total",
+      "cutoff": "1998-12-31",
+      "vintage": null,
+      "action": "hold",
+      "expected_value": null,
+      "observed_value": null,
+      "expected_unit": null,
+      "observed_unit": null,
+      "expected_support": {},
+      "observed_support": {},
+      "reason": "unsupported_unit",
+      "expected_hold_reason": "unsupported_unit",
+      "frozen_rationale": "No approved source-currency and FX conversion contract.",
+      "checks": {
+        "action": true,
+        "reason_present": true,
+        "no_answer_payload": true
+      },
+      "post_freeze_checks": {
+        "hold_reason_matches_rationale": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "S05",
+      "stratum": "severe",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1996-01-05",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 175,
+      "observed_value": 175,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    },
+    {
+      "id": "S06",
+      "stratum": "severe",
+      "expected_action": "answer",
+      "metric": "scheduled_active_loans",
+      "cutoff": "1993-01-01",
+      "vintage": null,
+      "action": "answer",
+      "expected_value": 0,
+      "observed_value": 0,
+      "expected_unit": "loans",
+      "observed_unit": "loans",
+      "expected_support": {},
+      "observed_support": {},
+      "reason": null,
+      "expected_hold_reason": null,
+      "frozen_rationale": null,
+      "checks": {
+        "action": true,
+        "value": true,
+        "unit": true,
+        "metric": true,
+        "as_of": true,
+        "snapshot": true,
+        "supporting_fields": true,
+        "sql_present": true,
+        "caveat_present": true
+      },
+      "post_freeze_checks": {
+        "registered_receipt": true,
+        "caller_role": true,
+        "current_catalog": true,
+        "reported_loan_count": true
+      },
+      "frozen_card_checks_passed": true,
+      "passed": true,
+      "contains_separable_permitted_component": false
+    }
+  ],
+  "supplementary_explicit_definitions": {
+    "description": "Two T7 weight choices and four T8 proxy/vintage choices. Excluded from the 30-case totals.",
+    "summary": {
+      "cases": 6,
+      "frozen_card_checks_passed": 6,
+      "post_freeze_checks_passed": 6,
+      "complete_technical_checks_passed": 6,
+      "answerable": 6,
+      "correct_answers_with_required_output_fields": 6,
+      "expected_holds": 0,
+      "holds_with_reason_and_no_answer_payload": 0,
+      "holds_matching_the_recorded_rationale": 0,
+      "would_be_answers": 6,
+      "would_be_full_answers": 6,
+      "would_be_partial_answers": 0,
+      "would_be_answers_failing_a_registered_check": 0,
+      "would_be_answers_failing_a_post_freeze_check": 0,
+      "mixed_cases": 0,
+      "mixed_requests_held_in_full": 0,
+      "mixed_requests_returning_a_separate_numeric_component": 0
+    },
+    "cases": [
+      {
+        "id": "D01",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "district_unemployment_1995_by_loan_count",
+        "cutoff": "1998-12-31",
+        "vintage": null,
+        "action": "answer",
+        "expected_value": 2.8421364985163207,
+        "observed_value": 2.8421364985163207,
+        "expected_unit": "percent",
+        "observed_unit": "percent",
+        "expected_support": {
+          "included_loans": 674,
+          "excluded_loans": 8,
+          "weight_sum": 674,
+          "weighted_rate_basis_points_sum": 191560
+        },
+        "observed_support": {
+          "included_loans": 674,
+          "excluded_loans": 8,
+          "weight_sum": 674,
+          "weighted_rate_basis_points_sum": 191560
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      },
+      {
+        "id": "D02",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "district_unemployment_1995_by_approved_amount",
+        "cutoff": "1998-12-31",
+        "vintage": null,
+        "action": "answer",
+        "expected_value": 2.7719750050008236,
+        "observed_value": 2.7719750050008236,
+        "expected_unit": "percent",
+        "observed_unit": "percent",
+        "expected_support": {
+          "included_loans": 674,
+          "excluded_loans": 8,
+          "weight_sum": 101323308,
+          "weighted_rate_basis_points_sum": 28086567720
+        },
+        "observed_support": {
+          "included_loans": 674,
+          "excluded_loans": 8,
+          "weight_sum": 101323308,
+          "weighted_rate_basis_points_sum": 28086567720
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      },
+      {
+        "id": "D03",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "vintage_finished_unpaid_share",
+        "cutoff": "1998-12-31",
+        "vintage": 1994,
+        "action": "answer",
+        "expected_value": 0.1411764705882353,
+        "observed_value": 0.1411764705882353,
+        "expected_unit": "fraction",
+        "observed_unit": "fraction",
+        "expected_support": {
+          "vintage": 1994,
+          "originated_loans": 101,
+          "finished_loans": 85,
+          "numerator": 12,
+          "denominator": 85
+        },
+        "observed_support": {
+          "vintage": 1994,
+          "originated_loans": 101,
+          "finished_loans": 85,
+          "numerator": 12,
+          "denominator": 85
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      },
+      {
+        "id": "D04",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "vintage_distressed_loan_share",
+        "cutoff": "1998-12-31",
+        "vintage": 1994,
+        "action": "answer",
+        "expected_value": 0.13861386138613863,
+        "observed_value": 0.13861386138613863,
+        "expected_unit": "fraction",
+        "observed_unit": "fraction",
+        "expected_support": {
+          "vintage": 1994,
+          "originated_loans": 101,
+          "finished_loans": 85,
+          "numerator": 14,
+          "denominator": 101
+        },
+        "observed_support": {
+          "vintage": 1994,
+          "originated_loans": 101,
+          "finished_loans": 85,
+          "numerator": 14,
+          "denominator": 101
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      },
+      {
+        "id": "D05",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "vintage_finished_unpaid_share",
+        "cutoff": "1998-12-31",
+        "vintage": 1997,
+        "action": "answer",
+        "expected_value": 0.06976744186046512,
+        "observed_value": 0.06976744186046512,
+        "expected_unit": "fraction",
+        "observed_unit": "fraction",
+        "expected_support": {
+          "vintage": 1997,
+          "originated_loans": 196,
+          "finished_loans": 43,
+          "numerator": 3,
+          "denominator": 43
+        },
+        "observed_support": {
+          "vintage": 1997,
+          "originated_loans": 196,
+          "finished_loans": 43,
+          "numerator": 3,
+          "denominator": 43
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      },
+      {
+        "id": "D06",
+        "stratum": "explicit_definition",
+        "expected_action": "answer",
+        "metric": "vintage_distressed_loan_share",
+        "cutoff": "1998-12-31",
+        "vintage": 1997,
+        "action": "answer",
+        "expected_value": 0.1326530612244898,
+        "observed_value": 0.1326530612244898,
+        "expected_unit": "fraction",
+        "observed_unit": "fraction",
+        "expected_support": {
+          "vintage": 1997,
+          "originated_loans": 196,
+          "finished_loans": 43,
+          "numerator": 26,
+          "denominator": 196
+        },
+        "observed_support": {
+          "vintage": 1997,
+          "originated_loans": 196,
+          "finished_loans": 43,
+          "numerator": 26,
+          "denominator": 196
+        },
+        "reason": null,
+        "expected_hold_reason": null,
+        "frozen_rationale": null,
+        "checks": {
+          "action": true,
+          "value": true,
+          "unit": true,
+          "metric": true,
+          "as_of": true,
+          "snapshot": true,
+          "supporting_fields": true,
+          "sql_present": true,
+          "caveat_present": true
+        },
+        "post_freeze_checks": {
+          "registered_receipt": true,
+          "caller_role": true,
+          "current_catalog": true
+        },
+        "frozen_card_checks_passed": true,
+        "passed": true,
+        "contains_separable_permitted_component": false
+      }
+    ]
+  }
+}

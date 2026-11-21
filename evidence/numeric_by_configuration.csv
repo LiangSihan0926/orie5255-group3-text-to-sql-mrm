@@ -1,0 +1,9 @@
+model,prompt,repair,requests,runtime_clean,key_match,key_mismatch,comparable_missing,strict_pass
+gpt-4.1,baseline,off,39,36,18,18,0,15
+gpt-4.1,baseline,on,39,33,20,13,0,15
+gpt-4.1,dict,off,39,36,27,9,0,27
+gpt-4.1,dict,on,39,34,26,8,0,26
+gpt-4o-mini,baseline,off,39,21,11,10,0,6
+gpt-4o-mini,baseline,on,39,19,10,9,0,6
+gpt-4o-mini,dict,off,39,23,13,10,0,13
+gpt-4o-mini,dict,on,39,25,18,7,0,18

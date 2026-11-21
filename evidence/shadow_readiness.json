@@ -1,0 +1,23 @@
+{
+  "status": "awaiting_records",
+  "submitted_requests": 0,
+  "intake_requests": 0,
+  "requests_with_reviewer_and_time": 0,
+  "answerable_cohort_size": 0,
+  "target_cohort_size": 30,
+  "observed_original_correct_and_disclosed": 0,
+  "answerable_holds_or_deferrals": 0,
+  "mean_active_review_minutes": null,
+  "eligible_requests": 0,
+  "would_be_releases": 0,
+  "full_answers": 0,
+  "partial_answers": 0,
+  "material_wrong_releases_on_eligible_requests": 0,
+  "material_wrong_releases_among_releases": 0,
+  "material_wrong_release_rate_per_eligible_request": null,
+  "material_wrong_release_rate_among_releases": null,
+  "material_wrong_release_request_ids": [],
+  "prohibited_effect_request_ids": [],
+  "incident_request_ids": [],
+  "incomplete_evidence": []
+}

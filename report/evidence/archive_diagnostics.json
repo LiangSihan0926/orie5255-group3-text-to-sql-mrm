@@ -1,0 +1,152 @@
+{
+  "archived_verdicts": {
+    "FAIL": 186,
+    "GUARDRAIL_CAUGHT": 12,
+    "PARTIAL": 66,
+    "PASS": 192
+  },
+  "dictionary_sql_diagnostics": {
+    "active_at_1996_year_end": {
+      "dictionary_expression": "date(date, '+duration months')",
+      "literal_active_count": 0,
+      "loans": 682,
+      "rows_with_null_literal_maturity": 682,
+      "scheduled_active_count": 247
+    },
+    "bad_loan_count_share": {
+      "dictionary_expression": "COUNT(status IN ('B','D')) / COUNT(*)",
+      "intended_denominator": 682,
+      "intended_fraction": 0.11143695014662756,
+      "intended_numerator": 76,
+      "literal_fraction": 1
+    },
+    "finished_unpaid_count_share": {
+      "dictionary_expression": "COUNT(status='B') / COUNT(status IN ('A','B'))",
+      "intended_denominator": 234,
+      "intended_fraction": 0.13247863247863248,
+      "intended_numerator": 31,
+      "literal_fraction": 1
+    },
+    "running_delinquent_count_share": {
+      "dictionary_expression": "COUNT(status='D') / COUNT(status IN ('C','D'))",
+      "intended_denominator": 448,
+      "intended_fraction": 0.10044642857142858,
+      "intended_numerator": 45,
+      "literal_fraction": 1
+    }
+  },
+  "exact_integer_diagnostics": {
+    "T4": {
+      "candidates": 20,
+      "reference": 23120268,
+      "wrong": 8
+    },
+    "T6": {
+      "candidates": 24,
+      "reference": 247,
+      "wrong": 15
+    },
+    "T9": {
+      "candidates": 12,
+      "reference": 197140434,
+      "wrong": 12
+    }
+  },
+  "final_records": 456,
+  "independently_rescored_display_keys": {
+    "matches": 143,
+    "mismatches": 84
+  },
+  "keys_for_t6_final_sql_with_literal_modifier": [
+    [
+      "gpt-4o-mini",
+      "dict",
+      "off",
+      1,
+      "T6"
+    ],
+    [
+      "gpt-4o-mini",
+      "dict",
+      "off",
+      2,
+      "T6"
+    ],
+    [
+      "gpt-4o-mini",
+      "dict",
+      "off",
+      3,
+      "T6"
+    ]
+  ],
+  "keys_for_t8_strict_pass_with_count_boolean_in_explanation": [
+    [
+      "gpt-4.1",
+      "dict",
+      "on",
+      1,
+      "T8"
+    ]
+  ],
+  "numeric_candidate_sensitivity": {
+    "after_excluding_visible_null_or_zero_scalar": {
+      "candidates": 204,
+      "key_matches": 143,
+      "key_mismatches": 61
+    },
+    "excluded_by_display_and_repair": {
+      "(0) / off": 8,
+      "(None) / off": 15
+    },
+    "original": {
+      "candidates": 227,
+      "key_matches": 143,
+      "key_mismatches": 84
+    },
+    "original_by_repair": {
+      "off": {
+        "candidates": 116,
+        "key_matches": 69,
+        "key_mismatches": 47
+      },
+      "on": {
+        "candidates": 111,
+        "key_matches": 74,
+        "key_mismatches": 37
+      }
+    },
+    "visible_null_or_zero_scalar": {
+      "candidates": 23,
+      "key_matches": 0,
+      "key_mismatches": 23
+    }
+  },
+  "numeric_requests": 312,
+  "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+  "t10_denominations": {
+    "baseline": {
+      "assumptions_mention_fx_or_rate": 0,
+      "assumptions_say_czk": 0,
+      "assumptions_say_us_dollars": 12,
+      "raw_sum_matches": 12,
+      "requests": 12,
+      "strict_passes": 0
+    },
+    "dict": {
+      "assumptions_mention_fx_or_rate": 0,
+      "assumptions_say_czk": 12,
+      "assumptions_say_us_dollars": 0,
+      "raw_sum_matches": 12,
+      "requests": 12,
+      "strict_passes": 12
+    }
+  },
+  "t3_owner_sensitivity": {
+    "all_female_links": 153957.09352517987,
+    "displays_reproducing_all_links": 9,
+    "female_owners": 155161.37931034484,
+    "mismatching_candidates": 9,
+    "relative_difference": -0.007761504766957694
+  }
+}

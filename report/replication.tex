@@ -1,0 +1,23 @@
+\section{Replication evidence and open interpretations}
+\label{sec:repdetails}
+
+\paragraph{Sources and comparison.}
+The \href{https://github.com/niklaswretblad/the-effects-of-noise-in-text-to-SQL/tree/6930cf6f9abaf50a3407f96b9facbda11835eec2}{paper authors' release} contains three financial reference files. The \href{https://github.com/LiangSihan0926/orie5255-group3-text-to-sql-mrm/blob/main/archive/manifest.json}{team input manifest}, also in the code ZIP, identifies the team questions, logs and snapshot by checksum. For each official ID, we ran each reference query on the same immutable database. Like the authors' evaluator, we compared complete rows irrespective of order, retaining duplicate counts. SQLite 3.37.2 and 3.53.1 gave identical flags. Agreement on one snapshot cannot establish that two queries mean the same thing.
+
+\paragraph{When a correction changes the question being scored.}
+In Q95, the original and SQL-only questions both ask for account numbers. The original query selects an account ID. The SQL-only query selects a client ID, which fits the later, revised question. A model returning the requested entity could lose credit. Conversely, four of the 22 items labeled for SQL errors retain their original outputs, including Q177, whose join was corrected. Even the SQL-only and fully corrected files differ in four queries (115, 142, 181, 186). Only Q142 changes output between these releases, from 33 rows to 32.
+
+\paragraph{Two disputed financial definitions.}
+For T7, 674 loans have an observed 1995 unemployment rate for their booking district. Eight lack a rate. Equal loan weights give 2.8421\%. Approved-amount weights give 2.7720\%. All 12 disputed results match the latter, and none displays the eight exclusions. For T8, the finished-loan status-B shares were 12/85 (14.12\%) for 1994 and 3/43 (6.98\%) for 1997. All six full key matches show both finished counts. The six disputed partial answers instead give the B/D shares among all originations, 14/101 (13.86\%) and 26/196 (13.27\%). Three show both origination counts. None shows both finished counts. The later vintage had less time to mature. The data provide no realized monetary loss for either cohort.
+
+\paragraph{The two predictions printed in Figure~8.}
+For Q177 the authors illustrate DIN-SQL (GPT-3.5) on the original and reworded questions. Each printed query omits a comma in its select list and fails to parse as shown. Inserting that comma in each query allows both to run. The prediction for the original question sums transaction amounts and disagrees with all three reference releases. The prediction for the reworded question uses the recorded balance and agrees with all three. This checks the published illustration under a stated edit. The model outputs used to score the full financial subset remain unavailable.
+
+\paragraph{The denominator in Figure~2.}
+The paper labels the original zero-shot GPT-4 result 38.09\%. A simple accuracy over 106 questions cannot round to this value. The adjacent attainable scores are 40/106 (37.74\%) and 41/106 (38.68\%). The other eleven labels are compatible with this denominator. We retain the printed score because the authors' files do not resolve its numerator or denominator.
+
+\paragraph{When a numerical match misleads.}
+Rechecking visible result columns reproduced 143 matches and 84 mismatches. Nine T3 candidates averaged all female account links, giving 153,957.09, only 0.78\% below the female-owner mean of 155,161.38. The population error merits review even below the proposed 1\% threshold. In T8, one response passed with the correct conditional count in SQL. Its explanation nevertheless described a Boolean count that would include both true and false rows.
+
+\paragraph{Snapshot freshness.}
+Two test files had the same schema. January's approved total was 100. A February loan of 60 raised it to 160. Three valid combinations of cutoff and snapshot passed. Four faults were held: a stale executor file, a stale cache, a wrong cutoff and a stale cache returning the expected number. Both files gave 100 at the January cutoff, but the request specified the February snapshot. The test checks the file opened and the cache entry's provenance. The bank data owner would still need to attest to the dates and test these controls on the target service.

@@ -1,0 +1,25 @@
+model,prompt,repair,repeat,observed_amount,expected_amount,relative_error,outcome
+gpt-4.1,baseline,off,1,23120268,23120268,0.0,exact total
+gpt-4.1,dict,off,1,23120268,23120268,0.0,exact total
+gpt-4.1,baseline,off,2,23120268,23120268,0.0,exact total
+gpt-4.1,baseline,off,3,23120268,23120268,0.0,exact total
+gpt-4.1,dict,off,2,23120268,23120268,0.0,exact total
+gpt-4.1,dict,off,3,23120268,23120268,0.0,exact total
+gpt-4.1,baseline,on,1,23120268,23120268,0.0,exact total
+gpt-4.1,baseline,on,2,23120268,23120268,0.0,exact total
+gpt-4.1,baseline,on,3,23120268,23120268,0.0,exact total
+gpt-4.1,dict,on,1,23120268,23120268,0.0,exact total
+gpt-4.1,dict,on,2,23120268,23120268,0.0,exact total
+gpt-4.1,dict,on,3,23120268,23120268,0.0,exact total
+gpt-4o-mini,baseline,off,1,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,baseline,off,2,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,baseline,off,3,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,dict,off,1,,23120268,,outside runtime-clean answer set
+gpt-4o-mini,dict,off,2,,23120268,,outside runtime-clean answer set
+gpt-4o-mini,dict,off,3,,23120268,,outside runtime-clean answer set
+gpt-4o-mini,baseline,on,1,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,baseline,on,2,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,baseline,on,3,154976052,23120268,5.70303873640219,wrong total
+gpt-4o-mini,dict,on,1,,23120268,,outside runtime-clean answer set
+gpt-4o-mini,dict,on,2,111981565824,23120268,4842.4371878388265,wrong total
+gpt-4o-mini,dict,on,3,92109472080,23120268,3982.9275254075774,wrong total

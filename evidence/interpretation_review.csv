@@ -1,0 +1,19 @@
+case_id,model,config,repeat,action,numeric_match_archived_definition,alternate_definition,numeric_match_alternative,supporting_count_checked,supporting_count_in_saved_result
+T7,openai_gpt-4.1,baseline / no repair,1,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,baseline / no repair,2,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,baseline / no repair,3,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / no repair,1,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / no repair,2,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / no repair,3,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,baseline / repair,1,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,baseline / repair,2,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,baseline / repair,3,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / repair,1,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / repair,2,answer,False,approved-amount weight,True,excluded loan count (8),False
+T7,openai_gpt-4.1,dict / repair,3,answer,False,approved-amount weight,True,excluded loan count (8),False
+T8,openai_gpt-4o-mini,dict / no repair,1,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",True
+T8,openai_gpt-4o-mini,dict / no repair,2,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",False
+T8,openai_gpt-4o-mini,dict / no repair,3,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",False
+T8,openai_gpt-4o-mini,dict / repair,1,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",False
+T8,openai_gpt-4o-mini,dict / repair,2,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",True
+T8,openai_gpt-4o-mini,dict / repair,3,partial,False,B/D count share of all originations,True,"originated loan count by vintage (101, 196)",True

@@ -1,0 +1,48 @@
+{
+  "paper_version": "arXiv:2402.12243v4",
+  "figure": 8,
+  "question_id": 177,
+  "source_figure": "https://github.com/niklaswretblad/the-effects-of-noise-in-text-to-SQL/blob/6930cf6f9abaf50a3407f96b9facbda11835eec2/figures/synonym_example.png",
+  "source_figure_sha256": "f6ae8ae823b8ac73e2aea75877037dbdbbd55b087ecbc49d1d9f4c98b2e94852",
+  "snapshot_sha256": "d15d89cdb068a202b6f2b99342af44dffc1d52545b39ceaf62efdc0ba570101e",
+  "model_label_in_figure": "DIN-SQL (GPT-3.5)",
+  "reference_outputs_equal_across_three_releases": true,
+  "examples": [
+    {
+      "displayed_prediction": "original_question",
+      "transcription_sha256": "24bc0bb3ac147d4cefeac8be55e3e1a739c64dd845b9a7e962489b762e4be336",
+      "as_printed": {
+        "execution": "syntax_error",
+        "row_count": null,
+        "matches_reference": null
+      },
+      "one_comma_inserted": {
+        "execution": "ok",
+        "row_count": 1,
+        "matches_reference": {
+          "original": false,
+          "sql_only": false,
+          "fully_corrected": false
+        }
+      }
+    },
+    {
+      "displayed_prediction": "reworded_question",
+      "transcription_sha256": "64f4c259611ef5adb4fb65ec4bea3fcb4f92a3a964b8721df29acc23de620084",
+      "as_printed": {
+        "execution": "syntax_error",
+        "row_count": null,
+        "matches_reference": null
+      },
+      "one_comma_inserted": {
+        "execution": "ok",
+        "row_count": 1,
+        "matches_reference": {
+          "original": true,
+          "sql_only": true,
+          "fully_corrected": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+# Archived inputs must retain their original bytes for the checksum checks.
+archive/** -text
+data/financial.sqlite.gz -text
+# The structured challenge verifies source digests, and the question replay
+# compares its saved CSV byte for byte across checkouts.
+validation/*.py text eol=lf
+validation/challenge_cases.json text eol=lf
+evidence/*.csv text eol=lf
